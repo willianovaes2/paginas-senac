@@ -111,12 +111,72 @@
 
                         <div class="mt-auto d-flex">
                             <a href="/editarDocentes.html" class="btn btn-outline-dark btn-sm w-100">
+                                <!-- href="/editarDocentes/{{$id->id}}" -->
                                 <i class="bi bi-pencil me-1"></i> Editar
                             </a>
                         </div>
-
                     </div>
                 </div>
+
+                <!-- @if ($ids->isEmpty())
+                <tr>
+                    <td colspan="8" class="text-center text-muted py-4">
+                        Nenhum docente encontrado
+                    </td>
+                </tr>
+                @else
+
+                @foreach ($ids as $docente)
+                <div class="col-md-6 col-lg-4 float-start">
+                    <div class="card docente-card p-4 h-100 hover-shadow">
+                        
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar me-3">
+                                <i class="bi bi-mortarboard-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">{{ $docente->nome }}</h6>
+                                <small class="text-muted">{{ $docente->email }}</small>
+                            </div>
+                        </div>
+                        
+                        <ul class="list-unstyled small mb-3">
+                            <li><strong>CPF:</strong> {{ $docente->cpf }}</li>
+                            <li><strong>Telefone:</strong> {{ $docente->telefone }}</li>
+                            <li><strong>Formação:</strong> {{ $docente->formacao }}</li>
+                            <li><strong>Especialização:</strong> {{ $docente->especializacao }}</li>
+                            <li><strong>Turno:</strong> {{ $docente->turno }}</li>
+                            <li><strong>Carga Horária:</strong> {{ $docente->carga_horaria }}</li>
+                        </ul>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-auto p-1">
+                            @if ($docente->status === 'ativo')
+                            <span class="badge bg-success-subtle text-success rounded-pill px-3">
+                                ativo
+                            </span>
+                            @else
+                            <span class="badge bg-danger-subtle text-danger rounded-pill px-3">
+                                inativo
+                            </span>
+                            @endif
+
+                            <small class="text-muted">
+                                Desde {{$docente->created_at->format('d/m/Y')}}
+                            </small>
+                        </div>
+                        
+                        <div class="mt-auto d-flex">
+                            <a href="/editarDocentes/{{$id->id}}" class="btn btn-outline-dark btn-sm w-100">
+                                <i class="bi bi-pencil me-1"></i> Editar
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                @endforeach
+                @endif -->
+                
+
             </div>
         </section>
 

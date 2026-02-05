@@ -104,30 +104,34 @@
                         </p>
 
                         <div class="mt-auto d-flex ">
-                            <a href="/editarUnidadesCurriculares.html" class="btn btn-outline-dark btn-sm w-100">
-                                <!-- href="/editarUnidadesCurriculares/{{$id->id}}" -->
+                            <a href="" class="btn btn-outline-dark btn-sm w-100">
                                 <i class="bi bi-pencil me-1"></i> Editar
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- @foreach ($ucs as $uc)
-                <div class="col-md-6 col-lg-4">
+                <!-- @if ($ids->isEmpty())
+                <tr>
+                    <td colspan="8" class="text-center text-muted py-4">
+                        Nenhuma Unidade Curricular encontrada
+                    </td>
+                </tr>
+                @else
+                @foreach ($ids as $uc)
+                <div class="col-md-6 col-lg-4 float-start">
                     <div class="card uc-card p-4 h-100 hover-shadow">
 
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5 class="fw-bold mb-0">
-                                {{ $uc->nome }}
-                            </h5>
+                            <h5 class="fw-bold mb-0">{{ $uc->nome }}</h5>
 
-                            @if ($uc->status === 'ativa')
+                            @if ($uc->status === 'ativo')
                             <span class="badge bg-success-subtle text-success rounded-pill px-3">
-                                ativa
+                                ativo
                             </span>
                             @else
                             <span class="badge bg-danger-subtle text-danger rounded-pill px-3">
-                                inativa
+                                inativo
                             </span>
                             @endif
                         </div>
@@ -137,61 +141,29 @@
                         </p>
 
                         <ul class="list-unstyled small mb-3">
-                            <li>
-                                <strong>Curso:</strong>
-                                {{ $uc->curso->nome ?? '—' }}
-                            </li>
-                            <li>
-                                <strong>Carga Horária:</strong>
-                                {{ $uc->carga_horaria }}h
-                            </li>
-                            <li>
-                                <strong>Dias:</strong>
-                                {{ $uc->dias }}
-                            </li>
-                            <li>
-                                <strong>Horário:</strong>
-                                {{ $uc->horario_inicio }} - {{ $uc->horario_fim }}
-                            </li>
-                            <li>
-                                <strong>Presença Mínima:</strong>
-                                {{ $uc->presenca_minima }}%
-                            </li>
+                            <li><strong>Curso:</strong> {{ $uc->curso->nome ?? '—' }}</li>
+                            <li><strong>Carga Horária:</strong> {{ $uc->carga_horaria }}h</li>
+                            <li><strong>Dias:</strong> {{ $uc->dias }}</li>
+                            <li><strong>Horário:</strong> {{ $uc->hora_inicio }} - {{ $uc->hora_fim }}</li>
+                            <li><strong>Presença Mínima:</strong> {{ $uc->presenca_minima }}%</li>
                         </ul>
 
                         <p class="small text-muted">
                             {{ $uc->descricao }}
                         </p>
 
-                        <div class="d-flex justify-content-between uc-actions mt-auto">
-                            <button class="btn btn-outline-dark btn-sm w-75" data-bs-toggle="modal"
-                                data-bs-target="#modalEditarUC" data-id="{{ $uc->id }}" data-nome="{{ $uc->nome }}"
-                                data-codigo="{{ $uc->codigo }}">
+                        <div class="mt-auto d-flex">
+                            <a href="/editarUnidadesCurriculares/{{$id->id}}" class="btn btn-outline-dark btn-sm w-100">
                                 <i class="bi bi-pencil me-1"></i> Editar
-                            </button>
-
-                            <form action="{{ route('ucs.destroy', $uc->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
+                            </a>
                         </div>
 
                     </div>
                 </div>
-                @endforeach -->
+                @endforeach
+                @endif -->
 
-                <!-- CONTROLLER -->
 
-                <!-- public function index()
-                {
-                $ucs = UC::with('curso')->orderBy('nome')->get();
-
-                return view('ucs.index', compact('ucs'));
-                } -->
             </div>
         </section>
 

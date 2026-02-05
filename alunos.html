@@ -152,29 +152,31 @@
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-dark me-1">
+                                    <a href="editarAlunos.html" class="btn btn-sm btn-outline-dark me-1">
+                                        <!-- href="/editarAluno/{{$id->id}}" -->
                                         <i class="bi bi-pencil"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 
-                            <!-- @foreach ($alunos as $aluno)
+                            <!-- @if ($ids->isEmpty())
+                            <tr>
+                                <td colspan="8" class="text-center text-muted py-4">
+                                    Nenhum aluno encontrado
+                                </td>
+                            </tr>
+                            @else
+                            @foreach ($ids as $aluno)
                             <tr>
                                 <td>
-                                    <div class="fw-semibold">
-                                        {{ $aluno->nome }}
-                                    </div>
-                                    <small class="text-muted">
-                                        {{ $aluno->email }}
-                                    </small>
+                                    <div class="fw-semibold">{{ $aluno->nome }}</div>
+                                    <small class="text-muted">{{ $aluno->email }}</small>
                                 </td>
-
+                                
                                 <td>{{ $aluno->matricula }}</td>
-
                                 <td>{{ $aluno->cpf }}</td>
-
                                 <td>{{ $aluno->telefone }}</td>
-
+                                
                                 <td>
                                     @if ($aluno->tipo === 'pagante')
                                     <span class="badge bg-primary-subtle text-primary rounded-pill px-3">
@@ -186,7 +188,7 @@
                                     </span>
                                     @endif
                                 </td>
-
+                                
                                 <td>
                                     @if ($aluno->status === 'ativo')
                                     <span class="badge bg-success-subtle text-success rounded-pill px-3">
@@ -198,38 +200,20 @@
                                     </span>
                                     @endif
                                 </td>
-
+                                
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
-                                        data-bs-target="#modalEditarAluno" data-id="{{ $aluno->id }}"
-                                        data-nome="{{ $aluno->nome }}" data-email="{{ $aluno->email }}">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-
-                                    <form action="{{ route('alunos.destroy', $aluno->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button class="btn btn-sm btn-outline-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach -->
-
-                            <!-- CONTROLLER -->
-
-                            <!-- public function index()
-                            {
-                            $alunos = Aluno::orderBy('nome')->get();
-
-                            return view('alunos.index', compact('alunos'));
-                            } -->
-                        </tbody>
-                    </table>
-                </div>
+                                    <a  href="/editarAlunos/{{$id->id}}"
+                                    class="btn btn-sm btn-outline-dark me-1">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif -->
+                        
+                    </tbody>
+                </table>
+            </div>
             </div>
         </section>
 
