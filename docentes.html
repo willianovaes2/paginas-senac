@@ -110,87 +110,13 @@
                         </div>
 
                         <div class="mt-auto d-flex">
-                            <button class="btn btn-outline-dark btn-sm w-100">
+                            <a href="/editarDocentes.html" class="btn btn-outline-dark btn-sm w-100">
                                 <i class="bi bi-pencil me-1"></i> Editar
-                            </button>
+                            </a>
                         </div>
 
                     </div>
                 </div>
-
-                <!-- @foreach ($docentes as $docente)
-                <div class="col-md-6 col-lg-4">
-                    <div class="card docente-card p-4 h-100 hover-shadow">
-
-                        <div class="d-flex align-items-center mb-3">
-                            <div class="avatar me-3">
-                                <i class="bi bi-mortarboard-fill"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold mb-0">
-                                    {{ $docente->nome }}
-                                </h6>
-                                <small class="text-muted">
-                                    {{ $docente->email }}
-                                </small>
-                            </div>
-                        </div>
-
-                        <ul class="list-unstyled small mb-3">
-                            <li><strong>CPF:</strong> {{ $docente->cpf }}</li>
-                            <li><strong>Telefone:</strong> {{ $docente->telefone }}</li>
-                            <li><strong>Formação:</strong> {{ $docente->formacao }}</li>
-                            <li><strong>Especialização:</strong> {{ $docente->especializacao }}</li>
-                            <li><strong>Turno:</strong> {{ $docente->turno }}</li>
-                            <li><strong>Carga Horária:</strong> {{ $docente->carga_horaria }}h/dia</li>
-                        </ul>
-
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            @if ($docente->status === 'ativo')
-                            <span class="badge bg-success-subtle text-success rounded-pill px-3">
-                                ativo
-                            </span>
-                            @else
-                            <span class="badge bg-danger-subtle text-danger rounded-pill px-3">
-                                inativo
-                            </span>
-                            @endif
-
-                            <small class="text-muted">
-                                Desde {{ \Carbon\Carbon::parse($docente->created_at)->format('d/m/Y') }}
-                            </small>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-3">
-                            <button class="btn btn-outline-secondary btn-sm w-75" data-bs-toggle="modal"
-                                data-bs-target="#modalEditarDocente" data-id="{{ $docente->id }}"
-                                data-nome="{{ $docente->nome }}" data-email="{{ $docente->email }}">
-                                <i class="bi bi-pencil me-1"></i> Editar
-                            </button>
-
-                            <form action="{{ route('docentes.destroy', $docente->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-                @endforeach -->
-
-                <!-- CONTROLLER -->
-
-                <!-- public function index()
-                {
-                $docentes = Docente::orderBy('nome')->get();
-
-                return view('docentes.index', compact('docentes'));
-                } -->
-
             </div>
         </section>
 

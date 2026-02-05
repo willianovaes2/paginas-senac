@@ -67,11 +67,11 @@
             <!-- Cabeçalho -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h2 class="fw-bold">Unidades Curriculares (UCs)</h2>
-                    <p class="text-muted">Editar as unidades curriculares dos cursos</p>
+                    <h2 class="fw-bold">Monitores de Educação Profissional</h2>
+                    <p class="text-muted ">Editar o docente cadastrado</p>
                 </div>
 
-                <a href="/unidadesCurriculares.html" class="text-end btn btn-primary">
+                <a href="/docentes.html" class="text-end btn btn-primary">
                     <i class="bi bi-arrow-left me-1"></i> Voltar
                 </a>
             </div>
@@ -79,76 +79,100 @@
 
             <form action="../atualizar/{{$dado->id}}" method="POST">
                 <div class="modal-body">
+                    
                     <div class="row">
+
                         <!-- Nome -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Nome da UC *</label>
-                            <input type="text" name="nome" class="form-control"
-                                placeholder="Ex: Desenvolvimento de Banco de Dados" value="{{$dado->nome}}" required>
+                            <label class="form-label fw-semibold">Nome Completo *</label>
+                            <input type="text" name="nome" class="form-control" placeholder="Nome completo do docente" value="{{$dado->nome}}"
+                                required>
                         </div>
 
-                        <!-- Tipo -->
+                    </div>
+
+                    <div class="row">
+                        <!-- CPF -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Código *</label>
-                            <input type="text" name="codigo" class="form-control" placeholder="Ex: UC10" value="{{$dado->codigo}}" required>
+                            <label class="form-label fw-semibold">CPF *</label>
+                            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" value="{{$dado->cpf}}" required>
+                        </div>
+
+                        <!-- Data de Nascimento -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Data de Nascimento *</label>
+                            <input type="date" name="data_nascimento" class="form-control" value="{{$dado->data_nascimento}}" required>
                         </div>
                     </div>
 
                     <div class="row">
+
+                        <!-- Endereço -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Curso *</label>
-                            <select name="curso" class="form-select" required>
-                                <option value="">Selecione o curso</option>
-                                <option value="tecnicoTI">Técnico de TI</option>
-                                <option value="devBd">Desenvolvimento de Banco de Dados</option>
+                            <label class="form-label fw-semibold">Endereço *</label>
+                            <input type="text" name="endereco" class="form-control"
+                                placeholder="Rua, número, bairro, cidade" value="{{$dado->endereco}}" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Telefone -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Telefone *</label>
+                            <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000" value="{{$dado->telefone}}" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Email *</label>
+                            <input type="text" name="email" class="form-control" placeholder="email@senacsp.edu.br" value="{{$dado->email}}" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Formação -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Formação (Graduação)</label>
+                            <input type="text" name="formacao" class="form-control" value="{{$dado->formacao}}" placeholder="Ex: Ciência da Computação">
+                        </div>
+                        <!-- Especialização -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Especialização (Pós)</label>
+                            <input type="text" name="especializacao" class="form-control" value="{{$dado->especializacao}}" placeholder="Ex: Banco de dados">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Carga Horária Diária -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Carga Horária Diária *</label>
+                            <select name="cargaHoraria" class="form-select">
+                                <option value="4">4 horas</option>
+                                <option value="6">6 horas</option>
+                                <option value="8" selected>8 horas</option>
+                            </select>
+                        </div>
+
+                        <!-- Turno de Trabalho -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Turno *</label>
+                            <select name="turno" class="form-select" required>
+                                <option value="">Selecione o turno</option>
+                                <option value="manha">Manhã</option>
+                                <option value="tarde">Tarde</option>
+                                <option value="noite">Noite</option>
+                                <option value="integral">Integral</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <!-- Carga Horária -->
+                        <!-- Carga Horária Diária -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Carga Horária (horas) *</label>
-                            <input type="number" name="carga_horaria" class="form-control" min="0" value="{{$dado->carga_horaria}}" required>
+                            <label class="form-label fw-semibold">Data de Cadastro</label>
+                            <input type="text" class="form-control" value="{{$dado->}}" readonly>
                         </div>
 
-                        <!-- Turno -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Presença Mínima (%) *</label>
-                            <input type="number" name="presencaMin" class="form-control" min="0" value="{{$dado->presencaMin}}" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Horário -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Dias de Aula *</label>
-                            <select name="diasAula" class="form-select" required>
-                                <option value="">Selecione os dias</option>
-                                <option value="segunda a sexta">Segunda a Sexta</option>
-                                <option value="segunda, quarta e sexta">Segunda, Quarta e Sexta</option>
-                                <option value="terca e quinta">Terça e Quinta</option>
-                                <option value="sabado">Sábado</option>
-                            </select>
-                        </div>
-
-                        <!-- Data Início -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Horário *</label>
-                            <input type="text" name="horario" class="form-control" placeholder="08:00 - 12:00" value="{{$dado->horario}}" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Descrição -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Descrição</label>
-                            <input type="text" name="descricao" class="form-control"
-                                placeholder="Descreva o conteúdo da UC..." value="{{$dado->descricao}}">
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <!-- Status -->
                         <div class="col">
                             <label class="form-label fw-semibold">Status</label>
@@ -157,17 +181,13 @@
                                 <option value="inativo">Inativo</option>
                             </select>
                         </div>
-
-                        <div class="col">
-
-                        </div>
                     </div>
                 </div>
 
                 <!-- Footer -->
                 <div class="modal-footer border-0 filter-tabs mt-3 gap-3">
                     <button type="button" class="btn btn-danger text-white px-4" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluirUnidades">
+                        data-bs-target="#modalExcluirDocentes">
                         Excluir
                     </button>
                     <button type="submit" class="btn btn-warning text-white px-4">
@@ -176,7 +196,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="modalExcluirUnidades" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="modalExcluirDocentes" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">

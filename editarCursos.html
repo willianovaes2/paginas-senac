@@ -74,8 +74,8 @@
                 </a>
             </div>
 
-            <form action="" method="POST">
-                @csrf
+            <form action="../atualizar/{{$dado->id}}" method="POST">
+            
                 <div class="modal-body">
                     <div class="row">
                         <!-- Nome -->
@@ -105,25 +105,15 @@
                                 value="{{$dado->carga_horaria}}" required>
                         </div>
 
-                        <!-- Turno -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Turno *</label>
-                            <select name="turno" class="form-select" required>
-                                <option value="">Selecione o turno</option>
-                                <option value="manha">Manhã</option>
-                                <option value="tarde">Tarde</option>
-                                <option value="noite">Noite</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <!-- Horário -->
                         <div class="col">
                             <label class="form-label fw-semibold">Horário *</label>
                             <input type="text" name="horario" id="horario" class="form-control"
                                 placeholder="08:00 - 12:00" value="{{$dado->horario}}" required>
                         </div>
+                    </div>
+
+                    <div class="row">
 
                         <!-- Data Início -->
                         <div class="col">
@@ -131,15 +121,16 @@
                             <input type="date" name="data_inicio" id="data_inicio" class="form-control"
                                 value="{{$dado->data_inicio}}" required>
                         </div>
-                    </div>
-
-                    <div class="row">
+                        
                         <!-- Preço -->
                         <div class="col">
                             <label class="form-label fw-semibold">Preço (R$) *</label>
                             <input type="number" name="preco" id="preco" class="form-control" min="0" step="0.01"
                                 value="{{$dado->preco}}" required>
                         </div>
+                    </div>
+
+                    <div class="row">
 
                         <!-- Vagas -->
                         <div class="col">
@@ -147,15 +138,16 @@
                             <input type="number" name="vagas" id="vagas" class="form-control" min="0"
                                 value="{{$dado->vagas}}" required>
                         </div>
-                    </div>
 
-                    <div class="row">
                         <!-- Bolsas -->
                         <div class="col">
                             <label class="form-label fw-semibold">Bolsas de Estudo</label>
                             <input type="number" name="bolsas" id="bolsas" class="form-control" min="0"
                                 value="{{$dado->bolsas}}">
                         </div>
+                    </div>
+
+                    <div class="row">
 
                         <!-- Status -->
                         <div class="col">
@@ -164,6 +156,10 @@
                                 <option value="ativo" selected>Ativo</option>
                                 <option value="inativo">Inativo</option>
                             </select>
+                        </div>
+
+                        <div class="col">
+                            
                         </div>
                     </div>
                 </div>

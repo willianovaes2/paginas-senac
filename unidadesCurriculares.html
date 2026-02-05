@@ -105,6 +105,7 @@
 
                         <div class="mt-auto d-flex ">
                             <a href="/editarUnidadesCurriculares.html" class="btn btn-outline-dark btn-sm w-100">
+                                <!-- href="/editarUnidadesCurriculares/{{$id->id}}" -->
                                 <i class="bi bi-pencil me-1"></i> Editar
                             </a>
                         </div>
@@ -206,8 +207,8 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('unidadesCurriculares.store') }}" method="POST">
-                        <!-- @csrf -->
+                    <form action="" method="POST">
+                        @csrf
 
                         <div class="modal-body">
                             <div class="row">
@@ -279,10 +280,10 @@
                                     <label class="form-label fw-semibold">Dias de Aula *</label>
                                     <select name="diasAula" class="form-select" required>
                                         <option value="">Selecione os dias</option>
-                                        <option value="tecnicoTI">Segunda a Sexta</option>
-                                        <option value="devBd">Segunda, Quarta e Sexta</option>
-                                        <option value="devBd">Terça e Quinta</option>
-                                        <option value="devBd">Sábado</option>
+                                        <option value="segunda a sexta">Segunda a Sexta</option>
+                                        <option value="segunda, quarta e sexta">Segunda, Quarta e Sexta</option>
+                                        <option value="terca e quinta">Terça e Quinta</option>
+                                        <option value="sabado">Sábado</option>
                                     </select>
                                 </div>
 

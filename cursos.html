@@ -81,7 +81,7 @@
                                 <th class="text-muted">Curso</th>
                                 <th class="text-muted">Tipo</th>
                                 <th class="text-muted">Carga Horária</th>
-                                <th class="text-muted">Turno</th>
+                                <!-- <th class="text-muted">Turno</th> -->
                                 <th class="text-muted">Vagas</th>
                                 <th class="text-muted">Preço</th>
                                 <th class="text-muted">Status</th>
@@ -98,7 +98,7 @@
                                 </td>
                                 <td>Técnico</td>
                                 <td>2000h</td>
-                                <td>Manhã</td>
+                                <!-- <td>Manhã</td> -->
                                 <td>30 (5 bolsas)</td>
                                 <td>R$ 450.00</td>
                                 <td>
@@ -108,72 +108,11 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="/editarCursos.html" class="btn btn-sm btn-outline-dark me-1">
+                                        <!-- href="/editarCursos/{{$id->id}}" -->
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                 </td>
                             </tr>
-
-                            <!-- @foreach ($cursos as $curso)
-                            <tr>
-                                <td>
-                                    <div class="fw-semibold">{{ $curso->nome }}</div>
-                                    <small class="text-muted">
-                                        {{ $curso->horario_inicio }} - {{ $curso->horario_fim }}
-                                    </small>
-                                </td>
-
-                                <td>{{ $curso->tipo }}</td>
-
-                                <td>{{ $curso->carga_horaria }}h</td>
-
-                                <td>{{ $curso->turno }}</td>
-
-                                <td>{{ $curso->vagas }} ({{ $curso->bolsas }} bolsas)</td>
-
-                                <td>R$ {{ number_format($curso->preco, 2, ',', '.') }}</td>
-
-                                <td>
-                                    @if ($curso->status === "ativo")
-                                    <span class="badge bg-success-subtle text-success rounded-pill px-3">
-                                        ativo
-                                    </span>
-                                    @else
-                                    <span class="badge bg-danger-subtle text-danger rounded-pill px-3">
-                                        inativo
-                                    </span>
-                                    @endif
-                                </td>
-
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
-                                        data-bs-target="#modalEditarCurso" data-id="{{ $curso->id }}"
-                                        data-nome="{{ $curso->nome }}" data-tipo="{{ $curso->tipo }}"
-                                        data-carga="{{ $curso->carga_horaria }}" data-turno="{{ $curso->turno }}"
-                                        data-preco="{{ $curso->preco }}">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-
-                                    <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm btn-outline-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach -->
-
-
-                            <!-- CONTROLLER -->
-
-                            <!-- public function index()
-                            {
-                            $cursos = Curso::orderBy('nome')->get();
-
-                            return view('cursos.index', compact('cursos'));
-                            } -->
                         </tbody>
                     </table>
                 </div>
@@ -192,8 +131,8 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('cursos.store') }}" method="POST">
-                        <!-- @csrf -->
+                    <form action="" method="POST">
+                        @csrf
 
                         <div class="modal-body">
                             <div class="row">
@@ -224,54 +163,47 @@
                                         required>
                                 </div>
 
-                                <!-- Turno -->
-                                <div class="col">
-                                    <label class="form-label fw-semibold">Turno *</label>
-                                    <select name="turno" class="form-select" required>
-                                        <option value="">Selecione o turno</option>
-                                        <option value="manha">Manhã</option>
-                                        <option value="tarde">Tarde</option>
-                                        <option value="noite">Noite</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
+                                
                                 <!-- Horário -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Horário *</label>
                                     <input type="text" name="horario" class="form-control" placeholder="08:00 - 12:00"
                                         required>
                                 </div>
+                            </div>
+
+                            <div class="row">
 
                                 <!-- Data Início -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Data de Início *</label>
                                     <input type="date" name="data_inicio" class="form-control" required>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <!-- Preço -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Preço (R$) *</label>
                                     <input type="number" name="preco" class="form-control" min="0" step="0.01" value="0"
                                         required>
                                 </div>
+                            </div>
+
+                            <div class="row">
 
                                 <!-- Vagas -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Número de Vagas *</label>
                                     <input type="number" name="vagas" class="form-control" min="0" value="0" required>
                                 </div>
-                            </div>
-
-                            <div class="row">
+                                
                                 <!-- Bolsas -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Bolsas de Estudo</label>
                                     <input type="number" name="bolsas" class="form-control" min="0" value="0">
                                 </div>
+                            </div>
+
+                            <div class="row">
 
                                 <!-- Status -->
                                 <div class="col">
@@ -280,6 +212,10 @@
                                         <option value="ativo" selected>Ativo</option>
                                         <option value="inativo">Inativo</option>
                                     </select>
+                                </div>
+
+                                <div class="col">
+                                    
                                 </div>
                             </div>
                         </div>
