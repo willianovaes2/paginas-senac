@@ -39,7 +39,7 @@
                     Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary active" href="/cursos.html"><i class="bi bi-clipboard2-check me-1"></i>
+                <a class="btn btn-primary" href="/cursos.html"><i class="bi bi-clipboard2-check me-1"></i>
                     Cursos</a>
             </li>
             <li class="nav-item">
@@ -49,7 +49,8 @@
                 <a class="btn btn-primary" href="/docentes.html"><i class="bi bi-calendar2-event me-1"></i> Docentes</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/alunos.html"><i class="bi bi-graph-up-arrow me-1"></i> Alunos</a>
+                <a class="btn btn-primary active" href="/alunos.html"><i class="bi bi-graph-up-arrow me-1"></i>
+                    Alunos</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-primary" href="/turmas.html"><i class="bi bi-graph-up-arrow me-1"></i> Turmas</a>
@@ -81,7 +82,8 @@
                         <!-- Nome -->
                         <div class="col">
                             <label class="form-label fw-semibold">Nome Completo *</label>
-                            <input type="text" name="nome" class="form-control" placeholder="Nome completo do aluno" value="{{$dado->nome}}" required>
+                            <input type="text" name="nome" class="form-control" placeholder="Nome completo do aluno"
+                                value="{{$dado->nome}}" required>
                         </div>
 
                     </div>
@@ -90,12 +92,14 @@
                         <!-- RA do Aluno -->
                         <div class="col">
                             <label class="form-label fw-semibold">RA (Registro Acadêmico) *</label>
-                            <input type="text" name="ra" class="form-control" placeholder="1140279318" value="{{$dado->ra}}" required>
+                            <input type="text" name="ra" class="form-control" placeholder="1140279318"
+                                value="{{$dado->ra}}" required>
                         </div>
                         <!-- CPF -->
                         <div class="col">
                             <label class="form-label fw-semibold">CPF *</label>
-                            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" value="{{$dado->cpf}}" required>
+                            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00"
+                                value="{{$dado->cpf}}" required>
                         </div>
                     </div>
 
@@ -103,7 +107,8 @@
                         <!-- Data de Nascimento -->
                         <div class="col">
                             <label class="form-label fw-semibold">Data de Nascimento *</label>
-                            <input type="date" name="data_nascimento" class="form-control" value="{{$dado->data_nascimento}}" required>
+                            <input type="date" name="data_nascimento" class="form-control"
+                                value="{{$dado->data_nascimento}}" required>
                         </div>
                         <!-- Data de Matrícula -->
                         <div class="col">
@@ -117,7 +122,8 @@
                         <!-- Endereço -->
                         <div class="col">
                             <label class="form-label fw-semibold">Endereço *</label>
-                            <input type="text" name="endereco" class="form-control" placeholder="Rua, número, bairro, cidade" value="{{$dado->endereco}}" required>
+                            <input type="text" name="endereco" class="form-control"
+                                placeholder="Rua, número, bairro, cidade" value="{{$dado->endereco}}" required>
                         </div>
                     </div>
 
@@ -125,13 +131,15 @@
                         <!-- Telefone -->
                         <div class="col">
                             <label class="form-label fw-semibold">Telefone *</label>
-                            <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000" value="{{$dado->telefone}}" required>
+                            <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000"
+                                value="{{$dado->telefone}}" required>
                         </div>
 
                         <!-- Email -->
                         <div class="col">
                             <label class="form-label fw-semibold">Email *</label>
-                            <input type="text" name="email" class="form-control" placeholder="email@senacsp.edu.br" value="{{$dado->email}}" required>
+                            <input type="text" name="email" class="form-control" placeholder="email@senacsp.edu.br"
+                                value="{{$dado->email}}" required>
                         </div>
                     </div>
 
@@ -152,6 +160,17 @@
                                 <option value="ativo" selected>Ativo</option>
                                 <option value="inativo">Inativo</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label fw-semibold">Senha</label>
+                            <input type="text" name="senha" class="form-control" value="{{$dado->senha}}">
+                        </div>
+
+                        <div class="col">
+
                         </div>
                     </div>
                 </div>

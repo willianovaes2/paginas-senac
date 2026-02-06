@@ -178,7 +178,8 @@
 
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
+                            <a data-bs-toggle="modal" data-bs-target="#modalAlunoTurmas"
+                                class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
                                 <i class="bi bi-person-lines-fill me-2"></i>
                                 <strong>Aluno → Turma</strong><br>
                                 <small>Matricular em turma</small>
@@ -186,14 +187,15 @@
                         </div>
 
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
+                            <a data-bs-toggle="modal" data-bs-target="#modalVincularUC"
+                                class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
                                 <i class="bi bi-journal-bookmark me-2"></i>
                                 <strong>Curso → UCs</strong><br>
                                 <small>Vincular UCs ao curso</small>
                             </a>
                         </div>
 
-                        <div class="col-md-4">
+                        <div data-bs-toggle="modal" data-bs-target="#modalVincularDocente" class="col-md-4">
                             <a href="#" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
                                 <i class="bi bi-mortarboard me-2"></i>
                                 <strong>Docente → Cursos</strong><br>
@@ -202,7 +204,8 @@
                         </div>
 
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
+                            <a data-bs-toggle="modal" data-bs-target="#modalVincularDocentesUC"
+                                class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
                                 <i class="bi bi-people me-2"></i>
                                 <strong>Docentes → UC</strong><br>
                                 <small>Múltiplos docentes</small>
@@ -210,7 +213,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
+                            <a data-bs-toggle="modal" data-bs-target="#modalVincularDocenteTurma" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
                                 <i class="bi bi-diagram-2 me-2"></i>
                                 <strong>Docente → Turmas</strong><br>
                                 <small>Múltiplas turmas</small>
@@ -234,7 +237,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('cursos.store') }}" method="POST">
+                    <form action="" method="POST">
                         <!-- @csrf -->
 
                         <div class="modal-body">
@@ -299,7 +302,7 @@
                                     <input type="number" name="vagas" class="form-control" min="0" value="0" required>
                                 </div>
 
-                                
+
                                 <!-- Bolsas -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Bolsas de Estudo</label>
@@ -319,7 +322,7 @@
                                 </div>
 
                                 <div class="col">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -353,7 +356,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('docentes.store') }}" method="POST">
+                    <form action="" method="POST">
                         <!-- @csrf -->
 
                         <div class="modal-body">
@@ -496,7 +499,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('alunos.store') }}" method="POST">
+                    <form action="" method="POST">
                         <!-- @csrf -->
 
                         <div class="modal-body">
@@ -597,6 +600,428 @@
 
                     </form>
 
+                </div>
+            </div>
+        </div>
+        <!-- FIM DO MODAL -->
+
+        <!-- Modal ALUNO - TURMAS -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalAlunoTurmas" tabindex="-1" aria-labelledby="modalVincularLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4">
+
+                    <form action="" method="POST">
+                        @csrf
+                        <!-- Header -->
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-semibold" id="modalVincularLabel">
+                                <i class="bi bi-person-plus text-warning me-2"></i>
+                                Vincular Aluno a Turma
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Selecione o Aluno</label>
+                                <select class="form-select">
+                                    <option selected>-- Selecione um aluno --</option>
+                                    @foreach ($ids as $aluno)
+                                    <option value="{{ $aluno->id }}">
+                                        {{ $aluno->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Selecione a Turma</label>
+                                <select class="form-select">
+                                    <option selected>-- Selecione uma turma --</option>
+                                    @foreach ($ids as $turma)
+                                    <option value="{{ $turma->id }}">
+                                        {{ $turma->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="alert alert-primary d-flex align-items-start gap-2">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Nota:</strong> Um aluno pode estar matriculado em múltiplas turmas.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Vincular
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIM DA MODAL -->
+
+        <!-- Modal CURSO - UCs -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalVincularUC" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4">
+
+                    <form action="" method="POST">
+                        @csrf
+
+                        <!-- Header -->
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-semibold">
+                                <i class="bi bi-book text-warning me-2"></i>
+                                Vincular UCs a Curso
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body">
+
+                            <!-- Curso -->
+                            <div class="mb-3">
+                                <label class="form-label">Selecione o Curso</label>
+                                <select name="curso_id" class="form-select" required>
+                                    <option value="">-- Selecione um curso --</option>
+                                    @foreach ($ids as $curso)
+                                    <option value="{{ $curso->id }}">
+                                        {{ $curso->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- UCs -->
+                            <div class="mb-2">
+                                <label class="form-label">
+                                    Selecione as UCs <small class="text-muted">(múltipla seleção)</small>
+                                </label>
+
+                                <div class="border rounded p-3" style="max-height: 220px; overflow-y: auto;">
+
+                                    @foreach ($ids as $uc)
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="ucs[]"
+                                            value="{{ $uc->id }}" id="uc{{ $uc->id }}">
+                                        <label class="form-check-label fw-semibold" for="uc{{ $uc->id }}">
+                                            {{ $uc->nome }}
+                                            <div class="small text-muted">
+                                                {{ $uc->carga_horaria }}h
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="ucs[]"
+                                            value="{{ $uc->id }}" id="uc{{ $uc->id }}">
+                                        <label class="form-check-label fw-semibold" for="uc{{ $uc->id }}">
+                                            {{ $uc->nome }}
+                                            <div class="small text-muted">
+                                                {{ $uc->carga_horaria }}h
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="ucs[]"
+                                            value="{{ $uc->id }}" id="uc{{ $uc->id }}">
+                                        <label class="form-check-label fw-semibold" for="uc{{ $uc->id }}">
+                                            {{ $uc->nome }}
+                                            <div class="small text-muted">
+                                                {{ $uc->carga_horaria }}h
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+
+                            <!-- Nota -->
+                            <div class="alert alert-primary d-flex align-items-start gap-2 mt-3">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Nota:</strong> Um curso pode ter múltiplas UCs associadas.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btnVincular">
+                                Vincular
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIM DA MODAL -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalVincularDocente" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4">
+
+                    <form action="" method="POST">
+                        @csrf
+
+                        <!-- Header -->
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-semibold">
+                                <i class="bi bi-mortarboard text-warning me-2"></i>
+                                Vincular Docente a Cursos
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body">
+
+                            <!-- Docente -->
+                            <div class="mb-3">
+                                <label class="form-label">Selecione o Docente</label>
+                                <select name="docente_id" class="form-select" required>
+                                    <option value="">-- Selecione um docente --</option>
+                                    @foreach ($ids as $docente)
+                                    <option value="{{ $docente->id }}">
+                                        {{ $docente->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Cursos -->
+                            <div class="mb-2">
+                                <label class="form-label">
+                                    Selecione os Cursos
+                                    <small class="text-muted">(múltipla seleção)</small>
+                                </label>
+
+                                <div class="border rounded p-3" style="max-height: 240px; overflow-y: auto;">
+                                    @foreach ($ids as $curso)
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="cursos[]"
+                                            value="{{ $curso->id }}" id="curso{{ $curso->id }}">
+                                        <label class="form-check-label fw-semibold" for="curso{{ $curso->id }}">
+                                            {{ $curso->nome }}
+                                            <div class="small text-muted">
+                                                {{ $curso->carga_horaria }}h
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <!-- Nota -->
+                            <div class="alert alert-primary d-flex align-items-start gap-2 mt-3">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Nota:</strong>
+                                    Um docente pode lecionar em múltiplos cursos, UCs e turmas.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btnVincularDocente">
+                                Vincular
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIM DO MODAL -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalVincularDocentesUC" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4">
+
+                    <form action="" method="POST">
+                        @csrf
+
+                        <!-- Header -->
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-semibold">
+                                <i class="bi bi-mortarboard text-warning me-2"></i>
+                                Vincular Docentes a UC
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body">
+
+                            <!-- UC -->
+                            <div class="mb-3">
+                                <label class="form-label">Selecione a UC</label>
+                                <select name="uc_id" class="form-select" required>
+                                    <option value="">-- Selecione uma UC --</option>
+                                    @foreach ($ids as $uc)
+                                    <option value="{{ $uc->id }}">
+                                        {{ $uc->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Docentes -->
+                            <div class="mb-2">
+                                <label class="form-label">
+                                    Selecione os Docentes
+                                    <small class="text-muted">(múltipla seleção)</small>
+                                </label>
+
+                                <div class="border rounded p-3" style="max-height: 240px; overflow-y: auto;">
+                                    @foreach ($ids as $docente)
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="docentes[]"
+                                            value="{{ $docente->id }}" id="docente{{ $docente->id }}">
+                                        <label class="form-check-label fw-semibold" for="docente{{ $docente->id }}">
+                                            {{ $docente->nome }}
+                                            <div class="small text-muted">
+                                                {{ $docente->area }}
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <!-- Nota -->
+                            <div class="alert alert-primary d-flex align-items-start gap-2 mt-3">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Nota:</strong>
+                                    Múltiplos docentes podem lecionar a mesma UC em diferentes turmas ou horários.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btnVincularDocentes">
+                                Vincular
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIM DO MODAL -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalVincularDocenteTurma" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4">
+
+                    <form action="" method="POST">
+                        @csrf
+
+                        <!-- Header -->
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-semibold">
+                                <i class="bi bi-people text-warning me-2"></i>
+                                Vincular Docente a Turmas
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body">
+
+                            <!-- Docente -->
+                            <div class="mb-3">
+                                <label class="form-label">Selecione o Docente</label>
+                                <select name="docente_id" class="form-select" required>
+                                    <option value="">-- Selecione um docente --</option>
+                                    @foreach ($ids as $docente)
+                                    <option value="{{ $docente->id }}">
+                                        {{ $docente->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Turmas -->
+                            <div class="mb-2">
+                                <label class="form-label">
+                                    Selecione as Turmas
+                                    <small class="text-muted">(múltipla seleção)</small>
+                                </label>
+
+                                <div class="border rounded p-3" style="max-height: 240px; overflow-y: auto;">
+                                    @foreach ($ids as $turma)
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" name="turmas[]"
+                                            value="{{ $turma->id }}" id="turma{{ $turma->id }}">
+                                        <label class="form-check-label fw-semibold" for="turma{{ $turma->id }}">
+                                            {{ $turma->curso->nome }} - {{ $turma->nome }}
+                                            <div class="small text-muted">
+                                                {{ $turma->turno }} - {{ $turma->alunos_count }} alunos
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <!-- Nota -->
+                            <div class="alert alert-primary d-flex align-items-start gap-2 mt-3">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Nota:</strong>
+                                    Um docente pode lecionar para múltiplas turmas simultaneamente.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="btnVincularTurmas">
+                                Vincular
+                            </button>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>

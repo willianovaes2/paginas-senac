@@ -117,15 +117,20 @@
                                 <span class="fw-semibold">19/12/2027</span>
                             </div>
 
+                            <div class="mb-3">
+                                <small class="text-muted">Turno: </small>
+                                <span class="fw-semibold">Manhã</span>
+                            </div>
+
                             <!-- Ações -->
                             <div class="mt-auto d-flex gap-2">
                                 <button class="btn btn-outline-primary">
                                     <i class="bi bi-eye"></i> Ver
                                 </button>
 
-                                <button class="btn btn-outline-dark">
+                                <a href="/editarTurmas.html" class="btn btn-outline-dark">
                                     <i class="bi bi-pencil"></i>
-                                </button>
+                                </a>
 
                             </div>
 
@@ -189,6 +194,11 @@
                                 <span class="fw-semibold">
                                     {{ $turma->data_fim->format('d/m/Y') }}
                                 </span>
+                            </div>
+
+                            <div class="mb-3">
+                                <small class="text-muted">Turno: </small>
+                                <span class="fw-semibold">{{$turma->turno}}</span>
                             </div>
                             
                             
