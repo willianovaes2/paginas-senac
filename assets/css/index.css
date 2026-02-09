@@ -347,3 +347,50 @@ footer {
 .hidden {
     display: none !important;
 }
+
+
+.status {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.status-verde {
+    background: #e6fff3;
+    color: #0f5132;
+}
+
+.status-amarelo {
+    background: #fff3cd;
+    color: #664d03;
+}
+
+.status-vermelho {
+    background: #ffe6e6;
+    color: #842029;
+}
+
+.card-uc {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 900px;
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+}
+
+.card-data {
+    cursor: pointer;
+}
+
+.input-date {
+    border: none;
+    background: transparent;
+    width: 100%;
+    cursor: pointer;
+}
+
+.input-date:focus {
+    outline: none;
+}

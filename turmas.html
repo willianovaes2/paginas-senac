@@ -124,7 +124,7 @@
 
                             <!-- Ações -->
                             <div class="mt-auto d-flex gap-2">
-                                <button class="btn btn-outline-primary">
+                                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDetalhesTurma">
                                     <i class="bi bi-eye"></i> Ver
                                 </button>
 
@@ -217,7 +217,7 @@
                 </div>
                 @endforeach
                 @endif -->
-                
+
             </div>
 
         </section>
@@ -366,6 +366,80 @@
                         </div>
 
                     </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- FIM DO MODAL -->
+
+        <!-- MODAL VISUALIZAR TURMA -->
+        <div class="modal fade" id="modalDetalhesTurma" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4">
+
+                    <!-- Header -->
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title fw-semibold">
+                            Detalhes da Turma TI-2026-01
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="modal-body">
+
+                        <!-- Infos principais -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <p class="mb-1 text-muted">Curso</p>
+                                <strong>Técnico de TI</strong>
+                            </div>
+
+                            <div class="col-md-6">
+                                <p class="mb-1 text-muted">Status</p>
+                                <strong class="text-success">Ativa</strong>
+                            </div>
+
+                            <div class="col-md-6 mt-3">
+                                <p class="mb-1 text-muted">Docente(s) Responsável</p>
+                                <strong>Allan Sobral da Silva</strong>
+                            </div>
+
+                            <div class="col-md-6 mt-3">
+                                <p class="mb-1 text-muted">Período</p>
+                                <strong>09/02/2026 até 19/12/2027</strong>
+                            </div>
+                        </div>
+
+                        <!-- Alunos -->
+                        <h6 class="fw-semibold mb-3">
+                            Alunos Matriculados ({{ $turma->alunos->count() }})
+                        </h6>
+
+                        <!-- Lista de alunos -->
+                        <div class="d-flex flex-column gap-3 lista-scroll">
+                            @foreach ($turma->ids as $aluno)
+                            <div class="d-flex align-items-center bg-light rounded-3 p-3">
+                                <div class="rounded-circle bg-warning text-white fw-bold d-flex align-items-center justify-content-center me-3"
+                                    style="width: 40px; height: 40px;">
+                                    {{ strtoupper(substr($aluno->nome, 0, 1)) }}
+                                </div>
+                                <div>
+                                    <strong>{{ $aluno->nome }}</strong><br>
+                                    <small class="text-muted">RA: {{ $aluno->ra }}</small>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-dark px-4" data-bs-dismiss="modal">
+                            Fechar
+                        </button>
+                    </div>
 
                 </div>
             </div>
