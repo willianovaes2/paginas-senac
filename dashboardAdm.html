@@ -37,26 +37,26 @@
 
         <ul class="nav nav-pills gap-2 mb-4">
             <li class="nav-item">
-                <a class="btn btn-primary active" href="/dashboardAdm.html"><i class="bi bi-speedometer2 me-1"></i>
+                <a class="btn btn-primary active" href="/dashboardAdm.html"><i class="bi bi-bar-chart"></i>
                     Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/cursos.html"><i class="bi bi-clipboard2-check me-1"></i> Cursos</a>
+                <a class="btn btn-primary" href="/cursos.html"><i class="bi bi-backpack"></i> Cursos</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary " href="/unidadesCurriculares.html"><i class="bi bi-people me-1"></i> UCs</a>
+                <a class="btn btn-primary " href="/unidadesCurriculares.html"><i class="bi bi-book"></i> UCs</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/docentes.html"><i class="bi bi-calendar2-event me-1"></i> Docentes</a>
+                <a class="btn btn-primary" href="/docentes.html"><i class="bi bi-person-workspace"></i> Docentes</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/alunos.html"><i class="bi bi-graph-up-arrow me-1"></i> Alunos</a>
+                <a class="btn btn-primary" href="/alunos.html"><i class="bi bi-person"></i> Alunos</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/turmas.html"><i class="bi bi-graph-up-arrow me-1"></i> Turmas</a>
+                <a class="btn btn-primary" href="/turmas.html"><i class="bi bi-people-fill"></i> Turmas</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/relatórios.html"><i class="bi bi-graph-up-arrow me-1"></i>
+                <a class="btn btn-primary" href="/relatórios.html"><i class="bi bi-clipboard-data"></i>
                     Relatórios</a>
             </li>
         </ul>
@@ -213,12 +213,198 @@
                         </div>
 
                         <div class="col-md-4">
-                            <a data-bs-toggle="modal" data-bs-target="#modalVincularDocenteTurma" class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
+                            <a data-bs-toggle="modal" data-bs-target="#modalVincularDocenteTurma"
+                                class="btn btn-light border-black w-100 text-start py-3" style="color: black;">
                                 <i class="bi bi-diagram-2 me-2"></i>
                                 <strong>Docente → Turmas</strong><br>
                                 <small>Múltiplas turmas</small>
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Filtro -->
+                <div class="d-flex justify-content-start align-items-center mb-3 gap-3 flex-wrap m-4">
+
+                    <div class="filter-tabs btn-group shadow-sm">
+                        <button class="btn btn-light">Todos</button>
+                        <button class="btn btn-light">Pendentes</button>
+                        <button class="btn btn-light">Aprovados</button>
+                        <button class="btn btn-light">Rejeitados</button>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div>
+                        <h5 class="fw-bold">Aluno → Turma</h5>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm rounded-2 w-75 m-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-muted">Código</th>
+                                    <th class="text-muted">Aluno Código</th>
+                                    <th class="text-muted">Turma Código</th>
+                                    <th class="text-muted text-center">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- Exemplo de linha (vai virar foreach) -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div>
+                        <h5 class="fw-bold">Cursos → UCs</h5>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm rounded-2 w-75 m-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-muted">Código</th>
+                                    <th class="text-muted">Aluno Código</th>
+                                    <th class="text-muted">Turma Código</th>
+                                    <th class="text-muted text-center">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- Exemplo de linha (vai virar foreach) -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div>
+                        <h5 class="fw-bold">Docentes → Cursos</h5>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm rounded-2 w-75 m-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-muted">Código</th>
+                                    <th class="text-muted">Aluno Código</th>
+                                    <th class="text-muted">Turma Código</th>
+                                    <th class="text-muted text-center">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- Exemplo de linha (vai virar foreach) -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div>
+                        <h5 class="fw-bold">Docentes → UCs</h5>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm rounded-2 w-75 m-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-muted">Código</th>
+                                    <th class="text-muted">Aluno Código</th>
+                                    <th class="text-muted">Turma Código</th>
+                                    <th class="text-muted text-center">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- Exemplo de linha (vai virar foreach) -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between px-4">
+                    <div>
+                        <h5 class="fw-bold">Docentes → Turmas</h5>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm rounded-2 w-75 m-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-muted">Código</th>
+                                    <th class="text-muted">Aluno Código</th>
+                                    <th class="text-muted">Turma Código</th>
+                                    <th class="text-muted text-center">Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <!-- Exemplo de linha (vai virar foreach) -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

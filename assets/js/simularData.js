@@ -60,13 +60,13 @@ function atualizarData(data) {
     document.getElementById('dataFormatada').innerText = texto;
 }
 
-function atualizarResumo() {
-    let presentes = document.querySelectorAll('input[value="P"]:checked').length;
-    let total = {{ count($alunos) }};
-    let faltas = total - presentes;
-    let percentual = Math.round((faltas / total) * 100);
+// function atualizarResumo() {
+//     let presentes = document.querySelectorAll('input[value="P"]:checked').length;
+//     let total = {{ count($alunos) }};
+//     let faltas = total - presentes;
+//     let percentual = Math.round((faltas / total) * 100);
 
-    document.getElementById('totalPresentes').innerText = presentes;
-    document.getElementById('totalFaltas').innerText = faltas;
-    document.getElementById('percentualFaltas').innerText = percentual + '%';
-}
+//     document.getElementById('totalPresentes').innerText = presentes;
+//     document.getElementById('totalFaltas').innerText = faltas;
+//     document.getElementById('percentualFaltas').innerText = percentual + '%';
+// }
