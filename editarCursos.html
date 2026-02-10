@@ -73,7 +73,7 @@
             </div>
 
             <form action="../atualizar/{{$dado->id}}" method="POST">
-            
+
                 <div class="modal-body">
                     <div class="row">
                         <!-- Nome -->
@@ -92,6 +92,58 @@
                                 <option value="graduacao">Graduação</option>
                                 <option value="livre">Curso Livre</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <!-- Turno de Trabalho -->
+                            <label class="form-label fw-semibold">Selecione os dias da semana</label>
+
+                            <div class="lista-scroll">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                        value="segunda-feira" id="segunda-feira">
+                                    <label class="form-check-label" for="segunda-feira">
+                                        Segunda-feira
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                        value="terca-feira" id="terca-feira">
+                                    <label class="form-check-label" for="terca-feira">
+                                        Terça-feira
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                        value="quarta-feira" id="quarta-feira">
+                                    <label class="form-check-label" for="quarta-feira">
+                                        Quarta-feira
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                        value="quinta-feira" id="quinta-feira">
+                                    <label class="form-check-label" for="quinta-feira">
+                                        Quinta-feira
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                        value="sexta-feira" id="sexta-feira">
+                                    <label class="form-check-label" for="sexta-feira">
+                                        Sexta-feira
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="diasSemana[]" value="sabado"
+                                        id="sabado">
+                                    <label class="form-check-label" for="sabado">
+                                        Sábado
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -119,7 +171,7 @@
                             <input type="date" name="data_inicio" id="data_inicio" class="form-control"
                                 value="{{$dado->data_inicio}}" required>
                         </div>
-                        
+
                         <!-- Preço -->
                         <div class="col">
                             <label class="form-label fw-semibold">Preço (R$) *</label>
@@ -157,14 +209,15 @@
                         </div>
 
                         <div class="col">
-                            
+
                         </div>
                     </div>
                 </div>
 
                 <!-- Footer -->
                 <div class="modal-footer border-0 filter-tabs mt-3 gap-3">
-                    <button type="button" class="btn btn-danger text-white px-4" data-bs-toggle="modal" data-bs-target="#modalExcluirCurso">
+                    <button type="button" class="btn btn-danger text-white px-4" data-bs-toggle="modal"
+                        data-bs-target="#modalExcluirCurso">
                         Excluir
                     </button>
                     <button type="submit" class="btn btn-warning text-white px-4">

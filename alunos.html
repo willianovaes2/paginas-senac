@@ -120,6 +120,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th class="text-muted">Aluno</th>
+                                <th class="text-muted">Intenção do Aluno</th>
                                 <th class="text-muted">RA</th>
                                 <th class="text-muted">CPF</th>
                                 <th class="text-muted">Telefone</th>
@@ -136,6 +137,7 @@
                                     <div class="fw-semibold">Ana Carolina Moreira de Andrade Sanitária</div>
                                     <small class="text-muted">ana.carolina@email.com</small>
                                 </td>
+                                <td>{{aluno->intencao}}</td>
                                 <td>1143086799</td>
                                 <td>111.222.333-44</td>
                                 <td>(11) 99999-8888</td>
@@ -227,19 +229,42 @@
                     </div>
 
                     <!-- Form -->
-                    <form action="{{ route('alunos.store') }}" method="POST">
+                    <form action="" method="POST">
                         <!-- @csrf -->
 
                         <div class="modal-body">
                             <div class="row">
-
                                 <!-- Nome -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Nome Completo *</label>
                                     <input type="text" name="nome" class="form-control"
                                         placeholder="Nome completo do aluno" required>
                                 </div>
+                            </div>
 
+                            <div class="row">
+                                <!-- Intenção do Aluno -->
+                                <div class="col">
+                                    <label class="form-label fw-semibold">Intenção do Aluno *</label>
+                                    <select name="intencao" class="form-select" required>
+                                        <option value="">Selecione o curso</option>
+
+                                        @if ($cursos->isEmpty())
+
+                                        <div colspan="8" class="text-center text-muted py-4">
+                                            Nenhum Curso encontrado
+                                        </div>
+
+                                        @else
+                                        @foreach ($ids as $curso)
+                                        <option value="{{ $curso->nome }}">
+                                            {{ $curso->nome }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                
                             </div>
 
                             <div class="row">

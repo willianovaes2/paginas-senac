@@ -79,6 +79,7 @@
                             <tr>
                                 <th class="text-muted">Curso</th>
                                 <th class="text-muted">Tipo</th>
+                                <th class="text-muted">Dias da semana</th>
                                 <th class="text-muted">Carga Horária</th>
                                 <th class="text-muted">Vagas</th>
                                 <th class="text-muted">Preço</th>
@@ -95,6 +96,7 @@
                                     <small class="text-muted">08:00 - 12:00</small>
                                 </td>
                                 <td>Técnico</td>
+                                <td>Segunda-feira, Terça-feira</td>
                                 <td>2000h</td>
                                 <td>30 (5 bolsas)</td>
                                 <td>R$ 450.00</td>
@@ -197,28 +199,63 @@
                             </div>
 
                             <div class="row">
+                                <div class="col">
+                                    <!-- Turno de Trabalho -->
+                                    <label class="form-label fw-semibold">Selecione os dias da semana</label>
+
+                                    <div class="lista-scroll">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                                value="segunda-feira" id="segunda-feira">
+                                            <label class="form-check-label" for="segunda-feira">
+                                                Segunda-feira
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                                value="terca-feira" id="terca-feira">
+                                            <label class="form-check-label" for="terca-feira">
+                                                Terça-feira
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                                value="quarta-feira" id="quarta-feira">
+                                            <label class="form-check-label" for="quarta-feira">
+                                                Quarta-feira
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                                value="quinta-feira" id="quinta-feira">
+                                            <label class="form-check-label" for="quinta-feira">
+                                                Quinta-feira
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                                value="sexta-feira" id="sexta-feira">
+                                            <label class="form-check-label" for="sexta-feira">
+                                                Sexta-feira
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]"
+                                                value="sabado" id="sabado">
+                                            <label class="form-check-label" for="sabado">
+                                                Sábado
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <!-- Carga Horária -->
                                 <div class="col">
                                     <label class="form-label fw-semibold">Carga Horária (horas) *</label>
                                     <input type="number" name="carga_horaria" class="form-control" min="0" value="0"
                                         required>
-                                </div>
-
-
-                                <!-- Horário -->
-                                <div class="col">
-                                    <label class="form-label fw-semibold">Horário *</label>
-                                    <input type="text" name="horario" class="form-control" placeholder="08:00 - 12:00"
-                                        required>
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <!-- Data Início -->
-                                <div class="col">
-                                    <label class="form-label fw-semibold">Data de Início *</label>
-                                    <input type="date" name="data_inicio" class="form-control" required>
                                 </div>
 
                                 <!-- Preço -->

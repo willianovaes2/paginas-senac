@@ -86,6 +86,21 @@
                     </div>
 
                     <div class="row">
+                        <!-- Curso -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Intenção do aluno *</label>
+                            <select name="intencao" class="form-select" required>
+                                @foreach ($cursos as $curso)
+                                <option value="{{ $curso->id }}" {{ $curso->id == $dado->curso_id ? 'selected' : ''
+                                    }}>
+                                    {{ $curso->nome }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <!-- RA do Aluno -->
                         <div class="col">
                             <label class="form-label fw-semibold">RA (Registro Acadêmico) *</label>

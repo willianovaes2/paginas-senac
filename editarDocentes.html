@@ -44,7 +44,8 @@
                 <a class="btn btn-primary " href="/unidadesCurriculares.html"><i class="bi bi-book"></i> UCs</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary active" href="/docentes.html"><i class="bi bi-person-workspace"></i> Docentes</a>
+                <a class="btn btn-primary active" href="/docentes.html"><i class="bi bi-person-workspace"></i>
+                    Docentes</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-primary" href="/alunos.html"><i class="bi bi-person"></i> Alunos</a>
@@ -77,14 +78,14 @@
 
             <form action="../atualizar/{{$dado->id}}" method="POST">
                 <div class="modal-body">
-                    
+
                     <div class="row">
 
                         <!-- Nome -->
                         <div class="col">
                             <label class="form-label fw-semibold">Nome Completo *</label>
-                            <input type="text" name="nome" class="form-control" placeholder="Nome completo do docente" value="{{$dado->nome}}"
-                                required>
+                            <input type="text" name="nome" class="form-control" placeholder="Nome completo do docente"
+                                value="{{$dado->nome}}" required>
                         </div>
 
                     </div>
@@ -93,13 +94,15 @@
                         <!-- CPF -->
                         <div class="col">
                             <label class="form-label fw-semibold">CPF *</label>
-                            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" value="{{$dado->cpf}}" required>
+                            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00"
+                                value="{{$dado->cpf}}" required>
                         </div>
 
                         <!-- Data de Nascimento -->
                         <div class="col">
                             <label class="form-label fw-semibold">Data de Nascimento *</label>
-                            <input type="date" name="data_nascimento" class="form-control" value="{{$dado->data_nascimento}}" required>
+                            <input type="date" name="data_nascimento" class="form-control"
+                                value="{{$dado->data_nascimento}}" required>
                         </div>
                     </div>
 
@@ -117,13 +120,15 @@
                         <!-- Telefone -->
                         <div class="col">
                             <label class="form-label fw-semibold">Telefone *</label>
-                            <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000" value="{{$dado->telefone}}" required>
+                            <input type="text" name="telefone" class="form-control" placeholder="(00) 00000-0000"
+                                value="{{$dado->telefone}}" required>
                         </div>
 
                         <!-- Email -->
                         <div class="col">
                             <label class="form-label fw-semibold">Email *</label>
-                            <input type="text" name="email" class="form-control" placeholder="email@senacsp.edu.br" value="{{$dado->email}}" required>
+                            <input type="text" name="email" class="form-control" placeholder="email@senacsp.edu.br"
+                                value="{{$dado->email}}" required>
                         </div>
                     </div>
 
@@ -131,12 +136,14 @@
                         <!-- Formação -->
                         <div class="col">
                             <label class="form-label fw-semibold">Formação (Graduação)</label>
-                            <input type="text" name="formacao" class="form-control" value="{{$dado->formacao}}" placeholder="Ex: Ciência da Computação">
+                            <input type="text" name="formacao" class="form-control" value="{{$dado->formacao}}"
+                                placeholder="Ex: Ciência da Computação">
                         </div>
                         <!-- Especialização -->
                         <div class="col">
                             <label class="form-label fw-semibold">Especialização (Pós)</label>
-                            <input type="text" name="especializacao" class="form-control" value="{{$dado->especializacao}}" placeholder="Ex: Banco de dados">
+                            <input type="text" name="especializacao" class="form-control"
+                                value="{{$dado->especializacao}}" placeholder="Ex: Banco de dados">
                         </div>
                     </div>
 
@@ -151,16 +158,9 @@
                             </select>
                         </div>
 
-                        <!-- Turno de Trabalho -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Turno *</label>
-                            <select name="turno" class="form-select" required>
-                                <option value="">Selecione o turno</option>
-                                <option value="manha">Manhã</option>
-                                <option value="tarde">Tarde</option>
-                                <option value="noite">Noite</option>
-                                <option value="integral">Integral</option>
-                            </select>
+                            <label class="form-label fw-semibold">Senha</label>
+                            <input type="text" name="senha" class="form-control" value="{{$dado->senha}}">
                         </div>
                     </div>
 
@@ -183,12 +183,36 @@
 
                     <div class="row">
                         <div class="col">
-                            <label class="form-label fw-semibold">Senha</label>
-                            <input type="text" name="senha" class="form-control" value="{{$dado->senha}}">
+                            <!-- Turno de Trabalho -->
+                            <label class="form-label fw-semibold">Turnos</label>
+
+                            <div class="lista-scroll">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="turnos[]" value="manha"
+                                        id="manha">
+                                    <label class="form-check-label" for="manha">
+                                        Manhã
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="turnos[]" value="tarde"
+                                        id="tarde">
+                                    <label class="form-check-label" for="tarde">
+                                        Tarde
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="turnos[]" value="noite"
+                                        id="noite">
+                                    <label class="form-check-label" for="noite">
+                                        Noite
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col">
-
+                            
                         </div>
                     </div>
                 </div>

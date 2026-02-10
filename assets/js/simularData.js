@@ -60,6 +60,28 @@ function atualizarData(data) {
     document.getElementById('dataFormatada').innerText = texto;
 }
 
+const filterButtons = document.querySelectorAll('[data-filter]');
+const blocos = document.querySelectorAll('.relacionamento');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+
+        // botão ativo
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const tipo = button.dataset.filter;
+
+        blocos.forEach(bloco => {
+            if (bloco.dataset.tipo === tipo) {
+                bloco.classList.remove('d-none');
+            } else {
+                bloco.classList.add('d-none');
+            }
+        });
+    });
+});
+
 // function atualizarResumo() {
 //     let presentes = document.querySelectorAll('input[value="P"]:checked').length;
 //     let total = {{ count($alunos) }};

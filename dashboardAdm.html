@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="../../assets/js/login1.js" defer></script>
+    <script src="/assets/js/simularData.js" defer></script>
     <title>Admin Dashboard - Senac</title>
 </head>
 
@@ -227,186 +227,269 @@
                 <div class="d-flex justify-content-start align-items-center mb-3 gap-3 flex-wrap m-4">
 
                     <div class="filter-tabs btn-group shadow-sm">
-                        <button class="btn btn-light">Todos</button>
-                        <button class="btn btn-light">Pendentes</button>
-                        <button class="btn btn-light">Aprovados</button>
-                        <button class="btn btn-light">Rejeitados</button>
+                        <button class="btn btn-light active" data-filter="aluno-turma">
+                            Aluno → Turma
+                        </button>
+
+                        <button class="btn btn-light" data-filter="curso-uc">
+                            Cursos → UCs
+                        </button>
+
+                        <button class="btn btn-light" data-filter="docente-curso">
+                            Docentes → Cursos
+                        </button>
+
+                        <button class="btn btn-light" data-filter="docente-uc">
+                            Docentes → UCs
+                        </button>
+
+                        <button class="btn btn-light" data-filter="docente-turma">
+                            Docentes → Turmas
+                        </button>
                     </div>
                 </div>
 
-                <div class="d-flex align-items-center justify-content-between px-4">
-                    <div>
-                        <h5 class="fw-bold">Aluno → Turma</h5>
+                <div class="relacionamento" data-tipo="aluno-turma">
+
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div>
+                            <h5 class="fw-bold">Aluno → Turma</h5>
+                        </div>
                     </div>
+
+                    <div class="card shadow-sm rounded-2 w-75 m-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-muted">Código</th>
+                                        <th class="text-muted">Aluno Código</th>
+                                        <th class="text-muted">Turma Código</th>
+                                        <th class="text-muted text-center">Ações</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="card shadow-sm rounded-2 w-75 m-4">
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-muted">Código</th>
-                                    <th class="text-muted">Aluno Código</th>
-                                    <th class="text-muted">Turma Código</th>
-                                    <th class="text-muted text-center">Ações</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                <!-- Exemplo de linha (vai virar foreach) -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="relacionamento d-none" data-tipo="curso-uc">
+
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div>
+                            <h5 class="fw-bold">Cursos → UCs</h5>
+                        </div>
                     </div>
+
+                    <div class="card shadow-sm rounded-2 w-75 m-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-muted">Código</th>
+                                        <th class="text-muted">Aluno Código</th>
+                                        <th class="text-muted">Turma Código</th>
+                                        <th class="text-muted text-center">Ações</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="d-flex align-items-center justify-content-between px-4">
-                    <div>
-                        <h5 class="fw-bold">Cursos → UCs</h5>
+
+                <div class="relacionamento d-none" data-tipo="docente-curso">
+
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div>
+                            <h5 class="fw-bold">Docentes → Cursos</h5>
+                        </div>
                     </div>
+
+                    <div class="card shadow-sm rounded-2 w-75 m-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-muted">Código</th>
+                                        <th class="text-muted">Aluno Código</th>
+                                        <th class="text-muted">Turma Código</th>
+                                        <th class="text-muted text-center">Ações</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="card shadow-sm rounded-2 w-75 m-4">
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-muted">Código</th>
-                                    <th class="text-muted">Aluno Código</th>
-                                    <th class="text-muted">Turma Código</th>
-                                    <th class="text-muted text-center">Ações</th>
-                                </tr>
-                            </thead>
+                <div class="relacionamento d-none" data-tipo="docente-uc">
 
-                            <tbody>
-                                <!-- Exemplo de linha (vai virar foreach) -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div>
+                            <h5 class="fw-bold">Docentes → UCs</h5>
+                        </div>
                     </div>
+
+                    <div class="card shadow-sm rounded-2 w-75 m-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-muted">Código</th>
+                                        <th class="text-muted">Aluno Código</th>
+                                        <th class="text-muted">Turma Código</th>
+                                        <th class="text-muted text-center">Ações</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="d-flex align-items-center justify-content-between px-4">
-                    <div>
-                        <h5 class="fw-bold">Docentes → Cursos</h5>
+                <div class="relacionamento d-none" data-tipo="docente-turma">
+
+                    <div class="d-flex align-items-center justify-content-between px-4">
+                        <div>
+                            <h5 class="fw-bold">Docentes → Turmas</h5>
+                        </div>
                     </div>
+    
+                    <div class="card shadow-sm rounded-2 w-75 m-4">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-muted">Código</th>
+                                        <th class="text-muted">Aluno Código</th>
+                                        <th class="text-muted">Turma Código</th>
+                                        <th class="text-muted text-center">Ações</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    <!-- Exemplo de linha (vai virar foreach) -->
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-sm btn-outline-danger me-1">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
                 </div>
 
-                <div class="card shadow-sm rounded-2 w-75 m-4">
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-muted">Código</th>
-                                    <th class="text-muted">Aluno Código</th>
-                                    <th class="text-muted">Turma Código</th>
-                                    <th class="text-muted text-center">Ações</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <!-- Exemplo de linha (vai virar foreach) -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center justify-content-between px-4">
-                    <div>
-                        <h5 class="fw-bold">Docentes → UCs</h5>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm rounded-2 w-75 m-4">
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-muted">Código</th>
-                                    <th class="text-muted">Aluno Código</th>
-                                    <th class="text-muted">Turma Código</th>
-                                    <th class="text-muted text-center">Ações</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <!-- Exemplo de linha (vai virar foreach) -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center justify-content-between px-4">
-                    <div>
-                        <h5 class="fw-bold">Docentes → Turmas</h5>
-                    </div>
-                </div>
-
-                <div class="card shadow-sm rounded-2 w-75 m-4">
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th class="text-muted">Código</th>
-                                    <th class="text-muted">Aluno Código</th>
-                                    <th class="text-muted">Turma Código</th>
-                                    <th class="text-muted text-center">Ações</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <!-- Exemplo de linha (vai virar foreach) -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-outline-danger me-1">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
         </section>
 

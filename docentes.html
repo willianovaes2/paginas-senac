@@ -44,7 +44,8 @@
                 <a class="btn btn-primary " href="/unidadesCurriculares.html"><i class="bi bi-book"></i> UCs</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary active" href="/docentes.html"><i class="bi bi-person-workspace"></i> Docentes</a>
+                <a class="btn btn-primary active" href="/docentes.html"><i class="bi bi-person-workspace"></i>
+                    Docentes</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-primary" href="/alunos.html"><i class="bi bi-person"></i> Alunos</a>
@@ -173,7 +174,7 @@
                 </div>
                 @endforeach
                 @endif -->
-                
+
 
             </div>
         </section>
@@ -272,16 +273,10 @@
                                     </select>
                                 </div>
 
-                                <!-- Turno de Trabalho -->
                                 <div class="col">
-                                    <label class="form-label fw-semibold">Turno *</label>
-                                    <select name="turno" class="form-select" required>
-                                        <option value="">Selecione o turno</option>
-                                        <option value="manha">Manhã</option>
-                                        <option value="tarde">Tarde</option>
-                                        <option value="noite">Noite</option>
-                                        <option value="integral">Integral</option>
-                                    </select>
+                                    <label class="form-label fw-semibold">Senha</label>
+                                    <input type="text" name="senha" class="form-control"
+                                        placeholder="Informe a senha do docente">
                                 </div>
                             </div>
 
@@ -305,12 +300,36 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <label class="form-label fw-semibold">Senha</label>
-                                    <input type="text" name="senha" class="form-control" placeholder="Informe a senha do docente">
+                                    <!-- Turno de Trabalho -->
+                                    <label class="form-label fw-semibold">Turnos</label>
+
+                                    <div class="lista-scroll">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="turnos[]"
+                                                value="manha" id="manha">
+                                            <label class="form-check-label" for="manha">
+                                                Manhã
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="turnos[]"
+                                                value="tarde" id="tarde">
+                                            <label class="form-check-label" for="tarde">
+                                                Tarde
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="turnos[]"
+                                                value="noite" id="noite">
+                                            <label class="form-check-label" for="noite">
+                                                Noite
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col">
-
+                                    
                                 </div>
                             </div>
                         </div>
