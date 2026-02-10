@@ -47,13 +47,13 @@
 
                 </div>
 
-                <a href="/selecionarData.html" class="text-end btn btn-primary">
+                <a href="/presencaDocente.html" class="text-end btn btn-primary">
                     <i class="bi bi-arrow-left me-1"></i> Voltar
                 </a>
 
             </div>
 
-            <div class="row d-flex justify-content-center mb-4">
+            <div class="row d-flex justify-content-center">
                 <div class="col w-100">
                     <div class="p-3 rounded-3 bg-primary-subtle text-primary hover-shadow">
                         <small>Total de Alunos</small>
@@ -62,85 +62,85 @@
                 </div>
 
                 <div class="col w-100">
+                    <div class="p-3 rounded-3 bg-dark-subtle hover-shadow">
+                        <small>Avaliados</small>
+                        <h4 class="fw-bold mb-0">10/10</h4>
+                    </div>
+                </div>
+
+                <div class="col w-100">
                     <div class="p-3 rounded-3 bg-success-subtle text-success hover-shadow">
-                        <small>Presença</small>
-                        <h4 class="fw-bold mb-0">0</h4>
+                        <small>Atendido</small>
+                        <h4 class="fw-bold mb-0">7</h4>
+                    </div>
+                </div>
+
+                <div class="col w-100">
+                    <div class="p-3 rounded-3 bg-warning-subtle text-warning hover-shadow">
+                        <small>Parcialmente</small>
+                        <h4 class="fw-bold mb-0">2</h4>
                     </div>
                 </div>
 
                 <div class="col w-100">
                     <div class="p-3 rounded-3 bg-danger-subtle text-danger hover-shadow">
-                        <small>Faltas</small>
-                        <h4 class="fw-bold mb-0">0</h4>
-                    </div>
-                </div>
-                
-                <div class="col w-100">
-                    <div class="p-3 rounded-3 bg-warning-subtle text-warning hover-shadow">
-                        <small>% da Faltas</small>
-                        <h4 class="fw-bold mb-0">0</h4>
+                        <small>Não Atendido</small>
+                        <h4 class="fw-bold mb-0">1</h4>
                     </div>
                 </div>
             </div>
 
-            <form action="" method="POST">
-                <!-- Lista de Alunos -->
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-4"><i class="bi bi-people"></i> Lista de Alunos</h5>
+            <!-- REQUISITOS -->
+            <div class="alert alert-primary rounded-4 mt-4">
+                <div class="fw-semibold mb-2">
+                    <i class="bi bi-exclamation-circle"></i> Requisitos para Aprovação na UC:
+                </div>
+                <ul class="mb-0">
+                    <li>Mínimo de <strong>65% de presença</strong> nas aulas</li>
+                    <li>Conceito <strong>Atendido</strong>, <strong>Parcialmente Atendido</strong> ou <strong>Não Atendido</strong></li>
+                </ul>
+            </div>
 
-                        @foreach ($ids as $aluno)
-                        <div class="card aluno-card mb-3">
-                            <div class="card-body d-grid gap-3">
+            <!-- AVALIAÇÃO -->
+            <div class="card shadow-sm rounded-4 p-4 mt-4">
 
-                                <div class="flex-grow-1">
-                                    <strong>{{ $aluno->nome }}</strong><br>
-                                    <small class="text-muted">RA: {{ $aluno->ra }}</small>
-                                </div>
+                <h5 class="fw-bold mb-4">Avaliação dos Alunos</h5>
 
-                                <div class="d-flex">
-                                    <!-- Presente -->
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="presenca[{{ $aluno->id }}]"
-                                            id="presente_{{ $aluno->id }}" value="presente">
-                                        <label class="form-check-label text-success" for="presente_{{ $aluno->id }}">
-                                            Presente
-                                        </label>
-                                    </div>
+                <!-- ALUNO -->
+                <!-- FOREACH ENTRA AQUI -->
+                <div class="border rounded-3 p-3 mb-3 d-flex justify-content-between align-items-center">
 
-                                    <!-- Falta -->
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="presenca[{{ $aluno->id }}]"
-                                            id="falta_{{ $aluno->id }}" value="falta" checked>
-                                        <label class="form-check-label text-danger" for="falta_{{ $aluno->id }}">
-                                            Falta
-                                        </label>
-                                    </div>
-                                </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">
+                            1
+                        </span>
 
-                                <input type="text" name="observacao[{{ $aluno->id }}]"
-                                    class="form-control w-100 bg-light" placeholder="Anotações sobre o aluno...">
+                        <div>
+                            <div class="fw-semibold">
+                                Ana Carolina Moreira de Andrade
                             </div>
+                            <small class="text-muted">
+                                ID: 12345
+                            </small>
                         </div>
-                        @endforeach
+                    </div>
 
+                    <span class="badge bg-success-subtle text-success">
+                        Presença 85%
+                    </span>
 
+                    <div class="d-flex align-items-center gap-3">
+
+                        <select class="form-select form-select-sm bg-light">
+                            <option value="" selected>Selecione conceito</option>
+                            <option value="atendido">Atendido</option>
+                            <option value="parcialmente atendido">Parcialmente Atendido</option>
+                            <option value="nao atendido">Não Atendido</option>
+                        </select>
                     </div>
                 </div>
-
-                <div class="mt-4">
-                    <label class="fw-bold mb-2">Observações Gerais da Aula</label>
-                    <textarea name="descricao" class="form-control bg-light" rows="3"
-                        placeholder="Digite aqui observações gerais sobre a aula, comportamento da turma, conteúdo ministrado, etc..."
-                        style="resize: none;"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-warning w-100 mt-4">
-                    <i class="bi bi-floppy"></i> Salvar Frequência
-                </button>
-
-            </form>
-
+                
+            </div>
         </section>
 
     </main>
