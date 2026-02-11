@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sanchez:ital@0;1&display=swap');
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/js/login1.js" defer></script>
+    <title>Admin Cursos - Senac</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <div class="header-top">
+
+        </div>
+
+        <div class="header-mid shadow">
+            <a class="logo-senac">
+                <img src="assets/images/logo-senac.png" alt="Logo do Senac" width="350px">
+            </a>
+        </div>
+    </header>
+
+    <main class="container-xl py-4 shadow">
+        <!-- Abas -->
+        <ul class="nav nav-pills gap-2 mb-4">
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/dashboardAdm.html"><i class="bi bi-bar-chart"></i></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/cursos.html"><i class="bi bi-backpack"></i> Cursos</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary " href="/unidadesCurriculares.html"><i class="bi bi-book"></i> UCs</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/docentes.html"><i class="bi bi-person-workspace"></i> Docentes</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/alunos.html"><i class="bi bi-person"></i> Alunos</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/turmas.html"><i class="bi bi-people-fill"></i> Turmas</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary active" href="/aulas.html"><i class="bi bi-file-bar-graph"></i>
+                    Aulas</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/indicadores.html"><i class="bi bi-card-list"></i>
+                    Indicadores</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/relatórios.html"><i class="bi bi-clipboard-data"></i>
+                    Relatórios</a>
+            </li>
+        </ul>
+
+        <!-- Conteudo Principal -->
+
+        <section class="container-fluid">
+
+            <!-- Cabeçalho -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h2 class="fw-bold ">Aulas</h2>
+                    <p class="text-muted">Gerencie as aulas dos cursos e turmas</p>
+                </div>
+
+                <button class="btn btn-primary text-end" data-bs-toggle="modal" data-bs-target="#modalNovaAula">
+                    <i class="bi bi-plus-lg"></i> Nova aula
+                </button>
+            </div>
+
+
+            <!-- Tabela -->
+            <div class="card shadow-sm rounded-4">
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-muted">Dia da aula</th>
+                                <th class="text-muted">UC Vinculado</th>
+                                <th class="text-muted">Curso</th>
+                                <th class="text-muted">Docente</th>
+                                <th class="text-muted">Status</th>
+                                <th class="text-muted">Turmas</th>
+                                <th class="text-center text-muted">Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @forelse ($aulas as $aula)
+                            <tr>
+                                <!-- Dia da Aula -->
+                                <td>
+                                    <span class="badge bg-light text-dark rounded-pill px-3">
+                                        {{ $aula->dia }}
+                                    </span>
+                                </td>
+
+                                <!-- Nome -->
+                                <td class="fw-semibold">
+                                    {{ $uc->nome }}
+                                </td>
+
+                                <!-- Curso -->
+                                <td>
+                                    <span class="badge rounded-pill px-3" style="background:#e7f0ff;color:#1d4ed8;">
+                                        {{ $aula->curso->nome }}
+                                    </span>
+                                </td>
+
+                                <!-- Docente -->
+                                <td>
+                                    {{ $aula->docente}}
+                                </td>
+
+                                <!-- Status -->
+                                <td>
+                                    @switch($aula->status)
+                                    @case('pendente')
+                                    <span class="badge bg-secondary-subtle text-secondary rounded-pill px-3">
+                                        Pendente
+                                    </span>
+                                    @break
+
+                                    @case('andamento')
+                                    <span class="badge bg-warning-subtle text-warning rounded-pill px-3">
+                                        Em andamento
+                                    </span>
+                                    @break
+
+                                    @case('concluido')
+                                    <span class="badge bg-success-subtle text-success rounded-pill px-3">
+                                        Concluído
+                                    </span>
+                                    @break
+
+                                    @default
+                                    <span class="badge bg-light text-dark rounded-pill px-3">
+                                        Não definido
+                                    </span>
+                                    @endswitch
+                                </td>
+
+                                <!-- Turmas -->
+                                <td>
+                                    @foreach ($aula->turmas as $turma)
+                                    <span class="badge rounded-pill px-3 me-1"
+                                        style="background:#f3e8ff;color:#7c3aed;">
+                                        {{ $turma->nome }}
+                                    </span>
+                                    @endforeach
+                                </td>
+
+                                <!-- Ações -->
+                                <td class="text-center">
+                                    <a href="/editarAulas.html" class="btn btn-sm btn-outline-dark me-1">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    Nenhuma aula encontrada
+                                </td>
+                            </tr>
+                            @endforelse
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Modal Nova Aula -->
+        <div class="modal fade" id="modalNovaAula" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content rounded-4 border-0">
+
+                    <!-- Header -->
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title fw-bold">Novo Aula</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Form -->
+                    <form action="" method="POST">
+                        <!-- @csrf -->
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <!-- Nome -->
+                                <div class="col">
+                                    <label class="form-label fw-semibold">
+                                        Unidades Curriculares *
+                                    </label>
+                                    <div class="border rounded-3 p-3 lista-scroll">
+
+                                        @foreach($cursos as $curso)
+                                        <div class="mb-3">
+
+                                            <!-- Nome do Curso -->
+                                            <div class="fw-semibold text-secondary mb-2">
+                                                {{ $curso->nome }}
+                                            </div>
+
+                                            <!-- UCs do Curso -->
+                                            @foreach($curso->ucs as $uc)
+                                            <div class="form-check mb-2 ms-3">
+                                                <input class="form-check-input" type="radio" name="ucs[]"
+                                                    value="{{ $uc->id }}" id="uc{{ $uc->id }}">
+
+                                                <label class="form-check-label" for="uc{{ $uc->id }}">
+                                                    {{ $uc->nome }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+
+                                        </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Curso -->
+                                <div class="col">
+                                    <label class="form-label fw-semibold">Curso *</label>
+                                    <select name="intencao" class="form-select" required>
+                                        <option value="">Selecione o curso</option>
+
+                                        @if ($cursos->isEmpty())
+
+                                        <div colspan="8" class="text-center text-muted py-4">
+                                            Nenhum Curso encontrado
+                                        </div>
+
+                                        @else
+                                        @foreach ($ids as $curso)
+                                        <option value="{{ $curso->nome }}">
+                                            {{ $curso->nome }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Dia da Aula -->
+                                <div class="col">
+                                    <label class="form-label fw-semibold">Dia da Aula *</label>
+                                    <input type="date" name="diaAula" class="form-control" required>
+                                </div>
+                                <!-- Status -->
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Status</label>
+                                    <select name="status" class="form-select" required>
+                                        <option value="">Selecione o status</option>
+                                        <option value="pendente">Pendente</option>
+                                        <option value="andamento">Em andamento</option>
+                                        <option value="concluido">Concluído</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Data de Nascimento -->
+                                <div class="col">
+                                    <label class="form-label fw-semibold">Turma *</label>
+                                    <select name="intencao" class="form-select" required>
+                                        <option value="">Selecione o curso</option>
+
+                                        @if ($turmas->isEmpty())
+
+                                        <div colspan="8" class="text-center text-muted py-4">
+                                            Nenhum Curso encontrado
+                                        </div>
+
+                                        @else
+                                        @foreach ($turmas as $turma)
+                                        <option value="{{ $turma->nome }}">
+                                            {{ $turma->nome }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Docentes -->
+                                <div class="col">
+                                    <label class="form-label fw-semibold">Selecionar Docentes</label>
+
+                                    <div class="lista-scroll">
+                                        @if ($docentes->isEmpty())
+
+                                        <div colspan="8" class="text-center text-muted py-4">
+                                            Nenhum docente encontrada
+                                        </div>
+
+                                        @else
+                                        @foreach ($docentes as $docente)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="docentes[]"
+                                                value="{{ $docente->id }}" id="docente{{ $docente->id }}">
+                                            <label class="form-check-label" for="docente{{ $docente->id }}">
+                                                {{ $docente->nomeDocente }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer border-0 filter-tabs">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-warning text-white px-4">
+                                Salvar
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- FIM DO MODAL -->
+
+    </main>
+
+    <footer class="mt-auto">
+        <div class="footer-top">
+            <p>Senac - Serviço Nacional de Aprendizagem Comercial - CNPJ: <a href="#">[consulte as unidades]</a> ou pelo
+                <a href="#">Fale Conosco</a> Informações: 4090-1030 para capitais e regiões metropolitanas e
+                0800-883-2000 para demais regiões
+            </p>
+        </div>
+
+        <div class="footer-bottom">
+            <picture class="logo-branco">
+                <img src="assets/images/logo_branco.png" alt="Logotipo do Senac" width="120">
+            </picture>
+
+            <div class="logos">
+                <a href="#" class="me-4 text-reset">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="#" class="me-4 text-reset">
+                    <i class="bi bi-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

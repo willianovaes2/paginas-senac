@@ -45,98 +45,187 @@
                 </div>
             </div>
 
-            <div class="card border-0 shadow-sm mb-2">
-                <div class="card-body rounded-3 text-white d-flex align-items-center gap-3" style="background-color: rgb(0, 77, 139);">
+            <form method="GET" action="{{ route('notas.index') }}">
+                <div class="card border-0 shadow-sm mb-2">
+                    <div class="card-body rounded-3 text-white d-flex align-items-center gap-3"
+                        style="background-color: rgb(0, 77, 139);">
 
-                    <!-- Curso -->
-                    <select class="form-select form-select-sm w-auto">
-                        @foreach ($ids as $turma)
-                        <option value="{{ $curso->id }}">
-                            {{ $turma->nome }}
-                        </option>
-                        @endforeach
-                    </select>
-
-                    <!-- Turma -->
-                    <select class="form-select form-select-sm w-auto border-0">
-                        @foreach ($ids as $turma)
-                        <option value="{{ $turma->id }}">
-                            {{ $turma->codigo }}
-                        </option>
-                        @endforeach
-                    </select>
-
-                    <!-- Ano -->
-                    <div class="ms-auto">
-                        <select class="form-select form-select-sm w-auto">
-                            @foreach ($ids as $ano)
-                            <option>{{ $turma->dataInicio }}</option>
+                        <!-- Curso -->
+                        <select name="curso_id" class="form-select form-select-sm w-auto">
+                            <option value="">Selecione Curso</option>
+                            @foreach ($cursos as $curso)
+                            <option value="{{ $curso->id }}" {{ request('curso_id')==$curso->id ? 'selected' : '' }}>
+                                {{ $curso->nome }}
+                            </option>
                             @endforeach
                         </select>
+
+                        <!-- Turma -->
+                        <select name="turma_id" class="form-select form-select-sm w-auto">
+                            <option value="">Selecione Turma</option>
+                            @foreach ($turmas as $turma)
+                            <option value="{{ $turma->id }}" {{ request('turma_id')==$turma->id ? 'selected' : '' }}>
+                                {{ $turma->codigo }}
+                            </option>
+                            @endforeach
+                        </select>
+
+                        <!-- Ano -->
+                        <div class="ms-auto">
+                            <select name="ano" class="form-select form-select-sm w-auto">
+                                <option value="">Selecione Ano</option>
+                                @foreach ($anos as $ano)
+                                <option value="{{ $ano }}" {{ request('ano')==$ano ? 'selected' : '' }}>
+                                    {{ $ano }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Filtrar
+                        </button>
+
                     </div>
-
                 </div>
-            </div>
 
-            <div class="card border-0 shadow-sm rounded-4">
+                <!-- public function index(Request $request)
+                {
+                $query = Uc::query();
+
+                // Filtro por curso
+                if ($request->filled('curso_id')) {
+                $query->where('curso_id', $request->curso_id);
+                }
+
+                // Filtro por turma
+                if ($request->filled('turma_id')) {
+                $query->where('turma_id', $request->turma_id);
+                }
+
+                // Filtro por ano
+                if ($request->filled('ano')) {
+                $query->whereYear('dataInicio', $request->ano);
+                }
+
+                $ucs = $query->get();
+
+                return view('notas.index', [
+                'ucs' => $ucs,
+                'cursos' => Curso::all(),
+                'turmas' => Turma::all(),
+                'anos' => Turma::selectRaw('YEAR(dataInicio) as ano')->distinct()->pluck('ano')
+                ]);
+                } -->
+            </form>
+
+
+            <div class="card shadow-sm rounded-4">
                 <div class="table-responsive">
-                    <table class="table mb-0 align-middle">
-
-                        <thead>
-                            <tr style="background:#fde9d2">
-                                <th>Componente</th>
-                                <th>Descrição</th>
-                                <th>Status</th>
-                                <th class="text-center">Nota | Frequência</th>
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-muted">Dia da aula</th>
+                                <th class="text-muted">UC Vinculado</th>
+                                <th class="text-muted">Curso</th>
+                                <th class="text-muted">Docente</th>
+                                <th class="text-muted">Status</th>
+                                <th class="text-muted">Turmas</th>
+                                <th class="text-center text-muted">Nota / Frequência</th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                            @forelse ($ids as $uc)
+                            @forelse ($aulas as $aula)
                             <tr>
+                                <!-- Dia da Aula -->
                                 <td>
-                                    <strong>{{ $uc->codigo }}</strong>
-                                    <div class="small text-muted">
-                                        {{ $uc->nome }}
-                                    </div>
+                                    <span class="badge bg-light text-dark rounded-pill px-3">
+                                        {{ $aula->dia }}
+                                    </span>
                                 </td>
 
-                                <td>
-                                    {{ $uc->descricao }}
+                                <!-- Nome -->
+                                <td class="fw-semibold">
+                                    {{ $uc->nome }}
                                 </td>
 
+                                <!-- Curso -->
                                 <td>
-                                    @if ($uc->status === 'pendente')
-                                    <span class="badge bg-secondary-subtle text-secondary rounded-pill px-3"> Pendente</span>
-                                    @elseif ($uc->status === 'andamento')
-                                    <span class="badge bg-warning-subtle text-warning rounded-pill px-3"> Em andamento</span>
-                                    @else
-                                    <span class="badge bg-success-subtle text-success rounded-pill px-3"> Concluído</span>
-                                    @endif
+                                    <span class="badge rounded-pill px-3" style="background:#e7f0ff;color:#1d4ed8;">
+                                        {{ $aula->curso->nome }}
+                                    </span>
                                 </td>
 
+                                <!-- Docente -->
+                                <td>
+                                    {{ $aula->docente}}
+                                </td>
+
+                                <!-- Status -->
+                                <td>
+                                    @switch($aula->status)
+                                    @case('pendente')
+                                    <span class="badge bg-secondary-subtle text-secondary rounded-pill px-3">
+                                        Pendente
+                                    </span>
+                                    @break
+
+                                    @case('andamento')
+                                    <span class="badge bg-warning-subtle text-warning rounded-pill px-3">
+                                        Em andamento
+                                    </span>
+                                    @break
+
+                                    @case('concluido')
+                                    <span class="badge bg-success-subtle text-success rounded-pill px-3">
+                                        Concluído
+                                    </span>
+                                    @break
+
+                                    @default
+                                    <span class="badge bg-light text-dark rounded-pill px-3">
+                                        Não definido
+                                    </span>
+                                    @endswitch
+                                </td>
+
+                                <!-- Turmas -->
+                                <td>
+                                    @foreach ($aula->turmas as $turma)
+                                    <span class="badge rounded-pill px-3 me-1"
+                                        style="background:#f3e8ff;color:#7c3aed;">
+                                        {{ $turma->nome }}
+                                    </span>
+                                    @endforeach
+                                </td>
+
+                                <!-- Botão -->
                                 <td class="text-center">
                                     @if ($uc->status === 'concluido')
-                                    <a href="/presencaDocente.html" class="btn btn-primary btn-sm">
+                                    <a href="" class="btn btn-primary btn-sm rounded-pill px-3">
                                         Visualizar
                                     </a>
                                     @else
-                                    <a href="/presencaDocente.html" class="btn btn-primary btn-sm">
+                                    <a href="/presencaDocente.html" class="btn btn-primary btn-sm rounded-pill px-3">
                                         Acessar
                                     </a>
                                     @endif
                                 </td>
+
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="text-center text-muted">
-                                    Nenhuma UC encontrada
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    Nenhuma aula encontrada
                                 </td>
                             </tr>
                             @endforelse
 
+
                         </tbody>
+
                     </table>
                 </div>
             </div>

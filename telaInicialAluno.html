@@ -51,8 +51,8 @@
                 <div class="d-flex align-items-center gap-3">
                     <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">👤</span>
                     <div>
-                        <div class="fw-semibold">Ana Carolina Moreira de Andrade</div>
-                        <small class="text-muted">RA: 1143086799 • Sanitária</small>
+                        <div class="fw-semibold">{{aluno->nome}}</div>
+                        <small class="text-muted">{{aluno->ra}}</small>
                     </div>
                 </div>
             </div>
@@ -63,8 +63,8 @@
                     <div class="d-flex align-items-center gap-3">
                         <i class="bi bi-book fs-5"></i>
                         <div>
-                            <div class="fw-bold">Desenvolvimento de Banco de Dados</div>
-                            <small class="text-muted">Prof. Ricardo Santos</small>
+                            <div class="fw-bold">{{uc->nome}}</div>
+                            <small class="text-muted">{{uc->docente}}</small>
                         </div>
                     </div>
 
@@ -74,32 +74,56 @@
                             Ver outras UCs
                         </button>
 
-                        <ul class="dropdown-menu p-2">
-                            <li class="bg-primary-subtle rounded mb-2 w-100">
-                                <a class="dropdown-item" href="">
-                                    <div class="fw-semibold">Desenvolvimento de Banco de Dados</div>
-                                    <small class="text-muted">Prof. Ricardo Santos</small>
-                                    <span class="badge bg-success float-end">80%</span>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            @foreach($ucs as $uc)
+                            <li class="w-100">
+                                <a class="dropdown-item" href="{{ route('presenca', [$aluno->id, $uc->id]) }}">
+                                    <h5>{{ $uc->nome }}</h5>
                                 </a>
                             </li>
-                            <li class="p-2 rounded mb-2">
-                                <a class="dropdown-item" href="">
-                                    <div class="fw-semibold">Programação Web</div>
-                                    <small class="text-muted">Prof. Maria Silva</small>
-                                    <span class="badge bg-success float-end">92%</span>
-                                </a>
-                            </li>
-                            <li class="p-2 rounded mb-2">
-                                <div class="fw-semibold">Análise e Modelagem de Sistemas</div>
-                                <small class="text-muted">Prof. João Oliveira</small>
-                                <span class="badge bg-danger float-end">67%</span>
-                            </li>
-                            <li class="p-2 rounded">
-                                <div class="fw-semibold">Redes de Computadores</div>
-                                <small class="text-muted">Prof. Carlos Mendes</small>
-                                <span class="badge bg-success float-end">100%</span>
-                            </li>
+                            @endforeach
                         </ul>
+
+                        <!-- public function controlePresenca($aluno_id, $uc_id = null)
+                        {
+                        $aluno = Aluno::findOrFail($aluno_id);
+
+                        // Todas as UCs do aluno
+                        $ucs = $aluno->ucs;
+
+                        // Se não escolher UC, pega a primeira
+                        if (!$uc_id) {
+                        $ucSelecionada = $ucs->first();
+                        } else {
+                        $ucSelecionada = $ucs->where('id', $uc_id)->first();
+                        }
+
+                        // Exemplo de cálculo
+                        $totalAulas = $ucSelecionada->aulas->count();
+                        $presencas = $ucSelecionada->presencas()
+                        ->where('aluno_id', $aluno->id)
+                        ->where('presente', 1)
+                        ->count();
+
+                        $faltas = $totalAulas - $presencas;
+                        $percentual = $totalAulas > 0
+                        ? ($presencas / $totalAulas) * 100
+                        : 0;
+
+                        return view('controle-presenca', compact(
+                        'aluno',
+                        'ucs',
+                        'ucSelecionada',
+                        'totalAulas',
+                        'presencas',
+                        'faltas',
+                        'percentual'
+                        ));
+                        }
+                        🧱 2️⃣ Rota
+                        Route::get('/presenca/{aluno}/{uc?}',
+                        [PresencaController::class, 'controlePresenca']
+                        )->name('presenca'); -->
                     </div>
                 </div>
             </div>
@@ -138,28 +162,6 @@
                 </div>
 
             </div>
-
-            <!-- INFORMAÇÕES -->
-            <div class="card shadow-sm rounded-4 p-4 mb-4">
-                <h5 class="fw-bold mb-3">Informações Importantes</h5>
-                <ul class="mb-0">
-                    <li>Mínimo de <strong>75% de presença</strong> para aprovação.</li>
-                    <li>Você possui <strong>4 faltas</strong> de um total de <strong>5 permitidas</strong>.</li>
-                    <li class="text-success fw-semibold">
-                        Você ainda pode faltar <strong>1 aula</strong> sem comprometer sua aprovação.
-                    </li>
-                </ul>
-            </div>
-
-            <!-- REGISTRO -->
-            <div class="card shadow-sm rounded-4 p-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-calendar"></i> Registro de Aulas</h5>
-                    <button class="btn btn-primary">Ver Detalhes</button>
-                </div>
-            </div>
-
-
         </section>
 
     </main>

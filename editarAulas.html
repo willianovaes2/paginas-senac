@@ -31,7 +31,7 @@
         </div>
     </header>
 
-    <main class="container-xl py-4 shadow">
+    <main class="container-xl py-4 shadow ">
         <!-- Abas -->
         <ul class="nav nav-pills gap-2 mb-4">
             <li class="nav-item">
@@ -41,7 +41,7 @@
                 <a class="btn btn-primary" href="/cursos.html"><i class="bi bi-backpack"></i> Cursos</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary active" href="/unidadesCurriculares.html"><i class="bi bi-book"></i> UCs</a>
+                <a class="btn btn-primary " href="/unidadesCurriculares.html"><i class="bi bi-book"></i> UCs</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-primary" href="/docentes.html"><i class="bi bi-person-workspace"></i> Docentes</a>
@@ -53,7 +53,7 @@
                 <a class="btn btn-primary" href="/turmas.html"><i class="bi bi-people-fill"></i> Turmas</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-primary" href="/aulas.html"><i class="bi bi-file-bar-graph"></i>
+                <a class="btn btn-primary active" href="/aulas.html"><i class="bi bi-file-bar-graph"></i>
                     Aulas</a>
             </li>
             <li class="nav-item">
@@ -66,106 +66,133 @@
             </li>
         </ul>
 
-        <!-- Conteudo Principal -->
-
+        <!-- Conteúdo principal -->
         <section class="container-fluid">
 
             <!-- Cabeçalho -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex align-items-center justify-content-between  mb-3">
                 <div>
-                    <h2 class="fw-bold">Unidades Curriculares (UCs)</h2>
-                    <p class="text-muted">Editar as unidades curriculares dos cursos</p>
+                    <h2 class="fw-bold ">Aulas</h2>
+                    <p class="text-muted">Editar as aulas dos cursos e turmas</p>
                 </div>
-
-                <a href="/unidadesCurriculares.html" class="text-end btn btn-primary">
+                <a href="/aulas.html" class="text-end btn btn-primary">
                     <i class="bi bi-arrow-left me-1"></i> Voltar
                 </a>
             </div>
 
-
             <form action="../atualizar/{{$dado->id}}" method="POST">
+
                 <div class="modal-body">
                     <div class="row">
                         <!-- Nome -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Nome da UC *</label>
-                            <input type="text" name="nome" class="form-control"
-                                placeholder="Ex: Desenvolvimento de Banco de Dados" value="{{$dado->nome}}" required>
-                        </div>
+                            <label class="form-label fw-semibold">
+                                Unidades Curriculares *
+                            </label>
+                            <div class="border rounded-3 p-3 lista-scroll">
 
-                        <!-- Tipo -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Código *</label>
-                            <input type="text" name="codigo" class="form-control" placeholder="Ex: UC10" value="{{$dado->codigo}}" required>
+                                @foreach($cursos as $curso)
+                                <div class="mb-3">
+
+                                    <!-- Nome do Curso -->
+                                    <div class="fw-semibold text-secondary mb-2">
+                                        {{ $curso->nome }}
+                                    </div>
+
+                                    <!-- UCs do Curso -->
+                                    @foreach($curso->ucs as $uc)
+                                    <div class="form-check mb-2 ms-3">
+                                        <input class="form-check-input" type="radio" name="ucs[]" value="{{ $uc->id }}"
+                                            id="uc{{ $uc->id }}">
+
+                                        <label class="form-check-label" for="uc{{ $uc->id }}">
+                                            {{ $uc->nome }}
+                                        </label>
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
+                        <!-- Curso -->
                         <div class="col">
                             <label class="form-label fw-semibold">Curso *</label>
-                            <select name="curso" class="form-select" required>
+                            <select name="intencao" class="form-select" required>
                                 <option value="">Selecione o curso</option>
-                                <option value="tecnicoTI">Técnico de TI</option>
-                                <option value="devBd">Desenvolvimento de Banco de Dados</option>
+                                @foreach ($cursos as $curso)
+                                <option value="{{ $curso->id }}" {{ $curso->id == $dado->curso_id ? 'selected' : '' }}>
+                                    {{ $curso->nome }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <!-- Carga Horária -->
+                        <!-- Dia da Aula -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Carga Horária (horas) *</label>
-                            <input type="number" name="carga_horaria" class="form-control" min="0" value="{{$dado->carga_horaria}}" required>
+                            <label class="form-label fw-semibold">Dia da Aula *</label>
+                            <input type="date" name="diaAula" class="form-control" required>
                         </div>
-
-                        <!-- Turno -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Presença Mínima (%) *</label>
-                            <input type="number" name="presencaMin" class="form-control" min="0" value="{{$dado->presencaMin}}" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Horário -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Dias de Aula *</label>
-                            <select name="diasAula" class="form-select" required>
-                                <option value="">Selecione os dias</option>
-                                <option value="segunda a sexta">Segunda a Sexta</option>
-                                <option value="segunda, quarta e sexta">Segunda, Quarta e Sexta</option>
-                                <option value="terca e quinta">Terça e Quinta</option>
-                                <option value="sabado">Sábado</option>
-                            </select>
-                        </div>
-
-                        <!-- Data Início -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Horário *</label>
-                            <input type="text" name="horario" class="form-control" placeholder="08:00 - 12:00" value="{{$dado->horario}}" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Descrição -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Descrição</label>
-                            <input type="text" name="descricao" class="form-control"
-                                placeholder="Descreva o conteúdo da UC..." value="{{$dado->descricao}}">
-                        </div>
-                    </div>
-
-                    <div class="row">
                         <!-- Status -->
-                        <div class="col">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Status</label>
-                            <select name="status" class="form-select">
-                                <option value="ativo" selected>Ativo</option>
-                                <option value="inativo">Inativo</option>
+                            <select name="status" class="form-select" required>
+                                <option value="">Selecione o status</option>
+                                <option value="Pendente" {{ $dado->status == 'Pendente' ? 'selected' : '' }}>Pendente
+                                </option>
+                                <option value="Em andamento" {{ $dado->status == 'Em Andamento' ? 'selected' : '' }}>Em
+                                    andamento</option>
+                                <option value="Concluido" {{ $dado->status == 'Concluido' ? 'selected' : '' }}>Concluído
+                                </option>
                             </select>
                         </div>
+                    </div>
 
+                    <div class="row">
+                        <!-- Data de Nascimento -->
                         <div class="col">
+                            <label class="form-label fw-semibold">Turma *</label>
+                            <select name="intencao" class="form-select" required>
+                                @foreach ($turmas as $turma)
+                                <option value="{{ $turma->id }}" {{ $turma->id == $dado->turma_id ? 'selected' : '' }}>
+                                    {{ $turma->nome }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <!-- Docentes -->
+                        <div class="col">
+                            <label class="form-label fw-semibold">Selecionar Docentes</label>
+
+                            <div class="lista-scroll">
+                                @if ($docentes->isEmpty())
+
+                                <div colspan="8" class="text-center text-muted py-4">
+                                    Nenhum docente encontrada
+                                </div>
+
+                                @else
+                                @foreach ($docentes as $docente)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="docentes[]"
+                                        value="{{ $docente->id }}" id="docente{{ $docente->id }}" {{
+                                        $dado->docentes->contains($docente->id) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="docente{{ $docente->id }}">
+                                        {{ $docente->nomeDocente }}
+                                    </label>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -173,7 +200,7 @@
                 <!-- Footer -->
                 <div class="modal-footer border-0 filter-tabs mt-3 gap-3">
                     <button type="button" class="btn btn-danger text-white px-4" data-bs-toggle="modal"
-                        data-bs-target="#modalExcluirUnidades">
+                        data-bs-target="#modalExcluirAula">
                         Excluir
                     </button>
                     <button type="submit" class="btn btn-warning text-white px-4">
@@ -182,7 +209,7 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="modalExcluirUnidades" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="modalExcluirAula" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -204,8 +231,6 @@
             </form>
 
         </section>
-
-
 
     </main>
 

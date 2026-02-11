@@ -54,6 +54,14 @@
                 <a class="btn btn-primary" href="/turmas.html"><i class="bi bi-people-fill"></i> Turmas</a>
             </li>
             <li class="nav-item">
+                <a class="btn btn-primary" href="/aulas.html"><i class="bi bi-file-bar-graph"></i>
+                    Aulas</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-primary" href="/indicadores.html"><i class="bi bi-card-list"></i>
+                    Indicadores</a>
+            </li>
+            <li class="nav-item">
                 <a class="btn btn-primary" href="/relatórios.html"><i class="bi bi-clipboard-data"></i>
                     Relatórios</a>
             </li>
@@ -212,7 +220,19 @@
                         </div>
 
                         <div class="col">
-                            
+                            <!-- Area do docente -->
+                            <div class="col">
+                                <label class="form-label fw-semibold">Área do docente *</label>
+                                <select name="intencao" class="form-select" required>
+                                    <option value="">Selecione o curso</option>
+                                    @foreach ($cursos as $curso)
+                                    <option value="{{ $curso->id }}" {{ $curso->id == $dado->curso_id ? 'selected' : ''
+                                        }}>
+                                        {{ $curso->nome }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

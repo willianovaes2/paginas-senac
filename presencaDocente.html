@@ -43,9 +43,9 @@
                     <div class="d-flex align-items-center justify-content-between p-4">
                         <div>
                             <h2 class="fw-bold  mb-1">
-                                {{ $uc->nome }}
+                                {{ $aula->uc }}
                             </h2>
-                            <small class="text-muted">ID do Curso: {{ $uc->id }}</small>
+                            <small class="text-muted">ID do Curso: {{ $aula->id }}</small>
 
                         </div>
 
@@ -64,15 +64,15 @@
                                     <i class="bi bi-person-fill me-2 text-primary"></i>
                                     <small class="text-muted">Professor</small>
                                 </div>
-                                @if ($ids->isEmpty())
+                                @if ($aula->docente->isEmpty())
                                 <div colspan="8" class="text-center text-muted py-4">
                                     Nenhum docente encontrado
                                 </div>
 
                                 @else
-                                @foreach ($ids as $docente)
+                                @foreach ($aulas as $aula)
                                 <p class="mb-0 fw-semibold text-primary">
-                                    {{ $docente->nome }}
+                                    {{ $aula->docente }}
                                 </p>
                                 <br>
                                 @endforeach
@@ -104,7 +104,8 @@
                     </div>
 
                     <!-- Status UC -->
-                    <section id="ucStatusCard" class="alert alert-success d-flex justify-content-between align-items-center mb-3">
+                    <section id="ucStatusCard"
+                        class="alert alert-success d-flex justify-content-between align-items-center mb-3">
                         <div>
                             <strong>UC em andamento</strong><br>
                             63 dias restantes<br>
@@ -113,8 +114,8 @@
 
                     </section>
 
-                    <button class="btn btn-secondary mb-3" data-bs-toggle="modal"
-                        data-bs-target="#modalSimularData"> <i class="bi bi-calendar"></i> Simular Data
+                    <button class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#modalSimularData"> <i
+                            class="bi bi-calendar"></i> Simular Data
                     </button>
 
                     <!-- Modal simular Data -->
@@ -160,11 +161,11 @@
 
                     <!-- Botão -->
                     <div class="d-flex gap-2">
-                        <a href="selecionarData.html" class="btn btn-primary w-50 mt-3 py-3">
+                        <a href="realizarChamada.html" class="btn btn-primary w-50 mt-3 py-3">
                             <i class="bi bi-clipboard-check-fill me-2"></i>
                             Iniciar Chamada
                         </a>
-                        
+
                         <a href="avaliacaoParcial.html" class="btn btn-primary w-50 mt-3 py-3">
                             <i class="bi bi-clipboard-check-fill me-2"></i>
                             Avaliação Parcial

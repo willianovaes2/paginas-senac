@@ -97,7 +97,8 @@
                 </div>
                 <ul class="mb-0">
                     <li>Mínimo de <strong>65% de presença</strong> nas aulas</li>
-                    <li>Conceito <strong>Atendido</strong>, <strong>Parcialmente Atendido</strong> ou <strong>Não Atendido</strong></li>
+                    <li>Conceito <strong>Atendido</strong>, <strong>Parcialmente Atendido</strong> ou <strong>Não
+                            Atendido</strong></li>
                 </ul>
             </div>
 
@@ -106,40 +107,108 @@
 
                 <h5 class="fw-bold mb-4">Avaliação dos Alunos</h5>
 
-                <!-- ALUNO -->
-                <!-- FOREACH ENTRA AQUI -->
-                <div class="border rounded-3 p-3 mb-3 d-flex justify-content-between align-items-center">
+                <form action="" method="POST">
 
-                    <div class="d-flex align-items-center gap-3">
-                        <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">
-                            1
+                    <!-- ALUNO -->
+                    <!-- FOREACH ENTRA AQUI -->
+
+                    <div class="border rounded-3 p-3 mb-3 d-flex justify-content-between align-items-center">
+
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">
+                                1
+                            </span>
+
+                            <div>
+                                <div class="fw-semibold">
+                                    Ana Carolina Moreira de Andrade
+                                </div>
+                                <small class="text-muted">
+                                    ID: 12345
+                                </small>
+                            </div>
+                        </div>
+
+                        <span class="badge bg-success-subtle text-success">
+                            Presença 85%
                         </span>
 
-                        <div>
-                            <div class="fw-semibold">
-                                Ana Carolina Moreira de Andrade
-                            </div>
-                            <small class="text-muted">
-                                ID: 12345
-                            </small>
+                        <div class="d-flex align-items-center gap-3">
+
+                            <select class="form-select form-select-sm bg-light">
+                                <option value="" selected>Selecione conceito</option>
+                                <option value="atendido">Atendido</option>
+                                <option value="parcialmente atendido">Parcialmente Atendido</option>
+                                <option value="nao atendido">Não Atendido</option>
+                            </select>
                         </div>
                     </div>
 
-                    <span class="badge bg-success-subtle text-success">
-                        Presença 85%
-                    </span>
+                    <button type="submit" class="btn btn-warning w-100 mt-4">
+                        <i class="bi bi-floppy"></i> Salvar Frequência
+                    </button>
 
-                    <div class="d-flex align-items-center gap-3">
+                    <!-- @csrf
 
-                        <select class="form-select form-select-sm bg-light">
-                            <option value="" selected>Selecione conceito</option>
-                            <option value="atendido">Atendido</option>
-                            <option value="parcialmente atendido">Parcialmente Atendido</option>
-                            <option value="nao atendido">Não Atendido</option>
-                        </select>
+                    @foreach($alunos as $index => $aluno)
+
+                    <div class="border rounded-3 p-3 mb-3 d-flex justify-content-between align-items-center">
+
+                         
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">
+                                {{ $index + 1 }}
+                            </span>
+
+                            <div>
+                                <div class="fw-semibold">
+                                    {{ $aluno->nome }}
+                                </div>
+                                <small class="text-muted">
+                                    ID: {{ $aluno->id }}
+                                </small>
+                            </div>
+                        </div>
+
+                        
+                        <span class="badge bg-success-subtle text-success">
+                            Presença {{ $aluno->percentual }}%
+                        </span>
+
+                       
+                        <div class="d-flex align-items-center gap-3">
+
+                            
+                            <input type="hidden" name="alunos[{{ $aluno->id }}][id]" value="{{ $aluno->id }}">
+
+                            <select name="alunos[{{ $aluno->id }}][conceito]"
+                                class="form-select form-select-sm bg-light">
+
+                                <option value="">Selecione conceito</option>
+
+                                <option value="atendido" {{ $aluno->conceito == 'atendido' ? 'selected' : '' }}>
+                                    Atendido
+                                </option>
+
+                                <option value="parcialmente atendido" {{ $aluno->conceito == 'parcialmente atendido' ?
+                                    'selected' : '' }}>
+                                    Parcialmente Atendido
+                                </option>
+
+                                <option value="nao atendido" {{ $aluno->conceito == 'nao atendido' ? 'selected' : '' }}>
+                                    Não Atendido
+                                </option>
+
+                            </select>
+                        </div>
                     </div>
-                </div>
-                
+
+                    @endforeach
+
+                    <button type="submit" class="btn btn-warning w-100 mt-4">
+                        <i class="bi bi-floppy"></i> Salvar Frequência
+                    </button> -->
+                </form>
             </div>
         </section>
 
