@@ -126,22 +126,13 @@
                     </div>
 
                     <div class="row">
-                        <!-- Horário -->
+                        <!-- Status -->
                         <div class="col">
-                            <label class="form-label fw-semibold">Dias de Aula *</label>
-                            <select name="diasAula" class="form-select" required>
-                                <option value="">Selecione os dias</option>
-                                <option value="segunda a sexta">Segunda a Sexta</option>
-                                <option value="segunda, quarta e sexta">Segunda, Quarta e Sexta</option>
-                                <option value="terca e quinta">Terça e Quinta</option>
-                                <option value="sabado">Sábado</option>
+                            <label class="form-label fw-semibold">Status</label>
+                            <select name="status" class="form-select">
+                                <option value="ativo" selected>Ativo</option>
+                                <option value="inativo">Inativo</option>
                             </select>
-                        </div>
-
-                        <!-- Data Início -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Horário *</label>
-                            <input type="text" name="horario" class="form-control" placeholder="08:00 - 12:00" value="{{$dado->horario}}" required>
                         </div>
                     </div>
 
@@ -151,21 +142,6 @@
                             <label class="form-label fw-semibold">Descrição</label>
                             <input type="text" name="descricao" class="form-control"
                                 placeholder="Descreva o conteúdo da UC..." value="{{$dado->descricao}}">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Status -->
-                        <div class="col">
-                            <label class="form-label fw-semibold">Status</label>
-                            <select name="status" class="form-select">
-                                <option value="ativo" selected>Ativo</option>
-                                <option value="inativo">Inativo</option>
-                            </select>
-                        </div>
-
-                        <div class="col">
-
                         </div>
                     </div>
                 </div>

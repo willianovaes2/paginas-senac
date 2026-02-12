@@ -41,10 +41,9 @@
             <div class="d-flex align-items-center justify-content-between p-4">
                 <div>
                     <h2 class="fw-bold  mb-1">
-                        {{ $uc->nome }}
+                        Realizar Chamada <br>
                     </h2>
-                    <p class="text-muted">Chamada – {{ $now }}</p>
-
+                    <h6 class="text-muted">{{ $date->now }}</6>
                 </div>
 
                 <a href="/presencaDocente.html" class="text-end btn btn-primary">
@@ -102,7 +101,7 @@
                                     <!-- Presente -->
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="presenca[{{ $aluno->id }}]"
-                                            id="presente_{{ $aluno->id }}" value="presente">
+                                            id="presente_{{ $aluno->id }}" value="presente" checked>
                                         <label class="form-check-label text-success" for="presente_{{ $aluno->id }}">
                                             Presente
                                         </label>
@@ -111,7 +110,7 @@
                                     <!-- Falta -->
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="presenca[{{ $aluno->id }}]"
-                                            id="falta_{{ $aluno->id }}" value="falta" checked>
+                                            id="falta_{{ $aluno->id }}" value="falta">
                                         <label class="form-check-label text-danger" for="falta_{{ $aluno->id }}">
                                             Falta
                                         </label>

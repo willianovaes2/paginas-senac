@@ -124,6 +124,97 @@ document.querySelectorAll('.btn-ver-turma').forEach(btn => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    const conceitoGlobal = document.getElementById('conceitoGlobal');
+    const btnAplicar = document.getElementById('btnAplicarTodos');
+
+    // Habilita botão apenas quando selecionar conceito
+    conceitoGlobal.addEventListener('change', function () {
+        btnAplicar.disabled = !this.value;
+    });
+
+    // Quando clicar em aplicar
+    btnAplicar.addEventListener('click', function () {
+
+        const conceito = conceitoGlobal.value;
+
+        if (!conceito) return;
+
+        if (!confirm("Deseja aplicar este conceito para todos os alunos?")) {
+            return;
+        }
+
+        // 1️⃣ Aplica no conceito final
+        document.querySelectorAll('.conceito-final-select')
+            .forEach(select => {
+                select.value = conceito;
+            });
+
+        // 2️⃣ Aplica nos indicadores
+        document.querySelectorAll('.indicador-select')
+            .forEach(select => {
+                select.value = conceito;
+            });
+
+        alert("Conceito aplicado com sucesso!");
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const btnSalvar = document.getElementById('btnSalvar');
+
+    function verificarIndicadores() {
+
+        const selects = document.querySelectorAll('.indicador-select');
+
+        let todosPreenchidos = true;
+
+        selects.forEach(select => {
+            if (!select.value) {
+                todosPreenchidos = false;
+            }
+        });
+
+        btnSalvar.disabled = !todosPreenchidos;
+    }
+
+    // Verifica toda vez que mudar um select
+    document.querySelectorAll('.indicador-select')
+        .forEach(select => {
+            select.addEventListener('change', verificarIndicadores);
+        });
+
+    // Verifica ao carregar a página
+    verificarIndicadores();
+
+});
+
+document.querySelectorAll('.uc-item').forEach(item => {
+
+    item.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const ucId = this.dataset.ucId;
+    //     const alunoId = {{ $aluno-> id
+    // }};
+
+fetch(`/presenca/dados/${ucId}/${alunoId}`)
+    .then(response => response.json())
+    .then(data => {
+
+        document.getElementById('percentual').innerText = data.percentual + '%';
+        document.getElementById('totalAulas').innerText = data.total_aulas;
+        document.getElementById('presencas').innerText = data.presencas;
+        document.getElementById('faltas').innerText = data.faltas;
+
+    });
+    });
+
+});
+
 // function atualizarResumo() {
 //     let presentes = document.querySelectorAll('input[value="P"]:checked').length;
 //     let total = {{ count($alunos) }};

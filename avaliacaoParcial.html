@@ -39,12 +39,11 @@
 
             <!-- Cabeçalho -->
             <div class="d-flex align-items-center justify-content-between p-4">
-                <div>
+               <div>
                     <h2 class="fw-bold  mb-1">
-                        {{ $uc->nome }}
+                        Avaliação Parcial da UC <br>
                     </h2>
-                    <p class="text-muted">Chamada – {{ $now }}</p>
-
+                    <small>{{ $uc->códigoUC }}</small> : <small>{{ $uc->nome }}</small>
                 </div>
 
                 <a href="/presencaDocente.html" class="text-end btn btn-primary">
@@ -105,111 +104,133 @@
             <!-- AVALIAÇÃO -->
             <div class="card shadow-sm rounded-4 p-4 mt-4">
 
-                <h5 class="fw-bold mb-4">Avaliação dos Alunos</h5>
+                <form action="" method="post">
+                    @csrf
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">Avaliação dos Alunos</h4>
 
-                <form action="" method="POST">
-
-                    <!-- ALUNO -->
-                    <!-- FOREACH ENTRA AQUI -->
-
-                    <div class="border rounded-3 p-3 mb-3 d-flex justify-content-between align-items-center">
-
-                        <div class="d-flex align-items-center gap-3">
-                            <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">
-                                1
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-semibold text-muted">
+                                <i class="bi bi-people"></i> Aplicar para Todos:
                             </span>
 
-                            <div>
-                                <div class="fw-semibold">
-                                    Ana Carolina Moreira de Andrade
-                                </div>
-                                <small class="text-muted">
-                                    ID: 12345
-                                </small>
-                            </div>
-                        </div>
-
-                        <span class="badge bg-success-subtle text-success">
-                            Presença 85%
-                        </span>
-
-                        <div class="d-flex align-items-center gap-3">
-
-                            <select class="form-select form-select-sm bg-light">
-                                <option value="" selected>Selecione conceito</option>
-                                <option value="atendido">Atendido</option>
-                                <option value="parcialmente atendido">Parcialmente Atendido</option>
-                                <option value="nao atendido">Não Atendido</option>
+                            <select id="conceitoGlobal" class="form-select form-select-sm" style="width: 180px;">
+                                <option value="">Selecionar conceito</option>
+                                <option value="Atendido">Atendido</option>
+                                <option value="Parcialmente Atendido">Parcialmente Atendido</option>
+                                <option value="Não Atendido">Não Atendido</option>
                             </select>
+
+                            <button id="btnAplicarTodos" class="btn btn-secondary btn-sm" disabled>
+                                Aplicar
+                            </button>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-warning w-100 mt-4">
-                        <i class="bi bi-floppy"></i> Salvar Frequência
-                    </button>
+                    @foreach ($alunos as $aluno)
 
-                    <!-- @csrf
+                    <div class="card mb-3 shadow-sm">
 
-                    @foreach($alunos as $index => $aluno)
 
-                    <div class="border rounded-3 p-3 mb-3 d-flex justify-content-between align-items-center">
+                        <div class="card-body d-flex justify-content-between align-items-center">
 
-                         
-                        <div class="d-flex align-items-center gap-3">
-                            <span class="badge rounded-pill bg-primary-subtle text-primary fs-6">
-                                {{ $index + 1 }}
-                            </span>
+                            <div class="d-flex align-items-center gap-3">
+
+
+                                <div class="rounded-circle bg-light text-primary fw-bold d-flex align-items-center justify-content-center"
+                                    style="width:40px;height:40px;">
+                                    {{ $loop->iteration }}
+                                </div>
+
+
+                                <div>
+                                    <strong>{{ $aluno->nome }}</strong><br>
+                                    <small class="text-muted">RA: {{ $aluno->ra }}</small>
+                                </div>
+                            </div>
+
 
                             <div>
-                                <div class="fw-semibold">
-                                    {{ $aluno->nome }}
-                                </div>
-                                <small class="text-muted">
-                                    ID: {{ $aluno->id }}
-                                </small>
+                                <small class="text-muted d-block">Presença</small>
+                                <span class="badge bg-success">
+                                    {{ $aluno->presenca }}%
+                                </span>
                             </div>
+
+
+                            <div style="width:200px;">
+                                <small class="text-muted d-block">Conceito Final</small>
+                                <select name="conceito_final[{{ $aluno->id }}]"
+                                    class="form-select conceito-final-select">
+                                    <option value="">Selecionar</option>
+                                    <option value="Atendido">Atendido</option>
+                                    <option value="Parcialmente Atendido">Parcialmente Atendido</option>
+                                    <option value="Não Atendido">Não Atendido</option>
+                                </select>
+                            </div>
+
+
+                            <button class="btn btn-sm btn-light" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#indicadores-{{ $aluno->id }}">
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+
                         </div>
 
-                        
-                        <span class="badge bg-success-subtle text-success">
-                            Presença {{ $aluno->percentual }}%
-                        </span>
 
-                       
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="collapse border-top" id="indicadores-{{ $aluno->id }}">
 
-                            
-                            <input type="hidden" name="alunos[{{ $aluno->id }}][id]" value="{{ $aluno->id }}">
+                            <div class="card-body">
 
-                            <select name="alunos[{{ $aluno->id }}][conceito]"
-                                class="form-select form-select-sm bg-light">
+                                <h6 class="fw-semibold mb-3 ">Avaliação por Indicador</h6>
 
-                                <option value="">Selecione conceito</option>
+                                @foreach ($indicadores as $indicador)
 
-                                <option value="atendido" {{ $aluno->conceito == 'atendido' ? 'selected' : '' }}>
-                                    Atendido
-                                </option>
+                                <div class="border rounded p-3 mb-3">
 
-                                <option value="parcialmente atendido" {{ $aluno->conceito == 'parcialmente atendido' ?
-                                    'selected' : '' }}>
-                                    Parcialmente Atendido
-                                </option>
+                                    <div class="d-flex justify-content-between align-items-start">
 
-                                <option value="nao atendido" {{ $aluno->conceito == 'nao atendido' ? 'selected' : '' }}>
-                                    Não Atendido
-                                </option>
+                                        <div>
+                                            <span class="badge bg-light text-dark">
+                                                {{ $indicador->codigo }}
+                                            </span>
 
-                            </select>
+                                            <span class="ms-2">
+                                                {{ $indicador->descricao }}
+                                            </span>
+                                        </div>
+
+                                        <div style="width:200px;">
+                                            <select name="indicadores[{{ $aluno->id }}][{{ $indicador->id }}]"
+                                                class="form-select indicador-select indicador-{{ $indicador->codigo }}">
+                                                <option value="">Selecionar conceito</option>
+                                                <option value="Atendido">Atendido</option>
+                                                <option value="Parcialmente Atendido">Parcialmente Atendido</option>
+                                                <option value="Não Atendido">Não Atendido</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                @endforeach
+
+                            </div>
+
                         </div>
+
                     </div>
 
                     @endforeach
-
-                    <button type="submit" class="btn btn-warning w-100 mt-4">
-                        <i class="bi bi-floppy"></i> Salvar Frequência
-                    </button> -->
+                    <div class="text-end mt-4">
+                        <button id="btnSalvar" type="submit" class="btn btn-warning w-100">
+                            <i class="bi bi-floppy"></i> Salvar Avaliação
+                        </button>
+                    </div>
                 </form>
             </div>
+
         </section>
 
     </main>
